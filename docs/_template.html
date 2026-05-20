@@ -4,6 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roles · Daily Edition</title>
+
+  <!-- Icons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+  <!-- PWA / iOS home-screen behavior -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="The Roles">
+  <meta name="theme-color" content="#faf8f3">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -390,7 +404,7 @@
       <label>Min. score</label>
       <input type="number" id="minScore" placeholder="0" min="0" max="100" />
     </div>
-  <div class="filter-group">
+    <div class="filter-group">
       <label>Sort by</label>
       <select id="sort">
         <option value="score">Score (high → low)</option>
@@ -486,12 +500,12 @@ function applyFilters(jobs) {
       if (!blob.includes(q)) return false;
     }
     if (f.remote_type && (j.remote_type || '').toLowerCase() !== f.remote_type) return false;
-if (f.location) {
+    if (f.location) {
       const loc = (j.location + ' ' + j.description).toLowerCase();
       const isRemote = j.remote_type === 'remote' || /\bremote\b|worldwide|anywhere/.test(loc);
       if (f.location === 'czech' && !/czech|cesk|prague|praha|\bcz\b/.test(loc)) return false;
       if (f.location === 'europe') {
-        const europeRegex = /europe|\beu\b|emea|german|france|spain|italy|poland|nether|czech|cesk|prague|portugal|sweden|denmark|norway|finland|ireland|belgium|austria|switzer|hungary|romania|bulgaria|greece|croatia|slovak|sloven|estonia|latvia|lithuania|malta|luxembourg|\bnl\b|\bde\b|\buk\b|\bfr\b|\bes\b|\bie\b|\bat\b|\bch\b|\bse\b|\bdk\b|\bpl\b/;
+        const europeRegex = /europe|\beu\b|emea|german|france|spain|italy|poland|nether|czech|cesk|prague|portugal|sweden|denmark|norway|finland|ireland|belgium|austria|switzer|hungary|romania|bulgaria|greece|croatia|slovak|sloven|estonia|latvia|lithuania|luxembourg|\bnl\b|\bde\b|\buk\b|\bfr\b|\bes\b|\bie\b|\bat\b|\bch\b|\bse\b|\bdk\b|\bpl\b/;
         if (!europeRegex.test(loc) && !isRemote) return false;
       }
       if (f.location === 'remote' && !isRemote) return false;
@@ -610,21 +624,6 @@ function bindEvents() {
   });
   document.getElementById('minScore').addEventListener('input', e => {
     STATE.filters.minScore = parseInt(e.target.value, 10) || 0; render();
-  });
-  document.getElementById('resetFilters').addEventListener('click', () => {
-    STATE.filters = { search: '', remote_type: '', location: '', source: '', age: '', status: '', minScore: 0, sort: 'score' };
-    document.getElementById('search').value = '';
-    document.getElementById('location').value = '';
-    document.getElementById('source').value = '';
-    document.getElementById('age').value = '';
-    document.getElementById('sort').value = 'score';
-    document.getElementById('minScore').value = '';
-    document.querySelectorAll('.pill-row').forEach(row => {
-      row.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-      const allPill = row.querySelector('.pill[data-value=""]');
-      if (allPill) allPill.classList.add('active');
-    });
-    render();
   });
 
   document.querySelectorAll('.pill-row').forEach(row => {
