@@ -16,6 +16,7 @@ roles:
     - "Fractional Chief Product"
     - "Interim CPO"
     - "Interim Head of Product"
+    - "Product Coach"
 
   # Good matches (weight 5)
   good:
@@ -24,6 +25,9 @@ roles:
     - "Principal Product Manager"
     - "Group Product Manager"
     - "Product Lead"
+    - "Product Coach"
+    - "Product Operations Manager"
+    - "Product Ops"
 
   # Avoid - explicit negative signals (penalty -20, effectively excludes)
   avoid:
