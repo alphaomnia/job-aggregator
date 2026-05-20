@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roles · Daily Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #faf8f3;
+      --ink: #1a1a1a;
+      --ink-mid: #4a4a48;
+      --ink-faint: #8a8884;
+      --rule: #d4cfc2;
+      --accent: #a83232;
+      --accent-soft: #f3e8e6;
+      --gold: #b8862a;
+      --sage: #5a6b4a;
+      --shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Fraunces', Georgia, serif;
+      font-feature-settings: "ss01", "ss02";
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background-image: radial-gradient(rgba(0,0,0,0.015) 1px, transparent 1px);
+      background-size: 3px 3px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page { max-width: 1280px; margin: 0 auto; padding: 32px 40px 80px; position: relative; z-index: 1; }
+
+    /* === Masthead === */
+    .masthead {
+      border-top: 4px double var(--ink);
+      border-bottom: 1px solid var(--ink);
+      padding: 16px 0;
+      margin-bottom: 4px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .masthead .left, .masthead .right {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+    }
+    .masthead .right { text-align: right; }
+
+    .masthead h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 56px;
+      letter-spacing: -0.04em;
+      text-align: center;
+      font-variation-settings: "opsz" 144;
+      line-height: 1;
+    }
+
+    .subhead {
+      border-bottom: 1px solid var(--ink);
+      padding: 8px 0 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .subhead .stats { font-family: 'JetBrains Mono', monospace; text-transform: none; letter-spacing: 0; font-size: 12px; }
+    .subhead .stats strong { color: var(--accent); font-weight: 500; }
+
+    /* === Filter bar === */
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      padding: 18px 20px;
+      background: rgba(255,255,255,0.5);
+      border: 1px solid var(--rule);
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .filter-group { display: flex; flex-direction: column; gap: 4px; }
+
+    .filter-group label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      font-weight: 500;
+    }
+
+    .filter-group input, .filter-group select {
+      font-family: 'Fraunces', serif;
+      font-size: 14px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--rule);
+      padding: 4px 0;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .filter-group input:focus, .filter-group select:focus {
+      border-bottom-color: var(--accent);
+    }
+
+    .filter-group select { cursor: pointer; }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .pill {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      padding: 3px 10px;
+      border: 1px solid var(--rule);
+      background: transparent;
+      cursor: pointer;
+      color: var(--ink-mid);
+      transition: all 0.15s;
+      border-radius: 100px;
+    }
+    .pill:hover { border-color: var(--ink); color: var(--ink); }
+    .pill.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+    /* === Job listings === */
+    .listings { display: flex; flex-direction: column; }
+
+    .job {
+      display: grid;
+      grid-template-columns: 60px 1fr 180px 140px;
+      gap: 20px;
+      align-items: start;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.15s;
+    }
+
+    .job:hover { background: rgba(255,255,255,0.5); }
+
+    .job[data-status="dismissed"] { opacity: 0.35; }
+
+    .job .number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-faint);
+      padding-top: 4px;
+    }
+
+    .job .main h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 1.2;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+      font-variation-settings: "opsz" 36;
+    }
+
+    .job .main h2 a {
+      color: var(--ink);
+      text-decoration: none;
+      background-image: linear-gradient(transparent calc(100% - 1px), var(--rule) 1px);
+    }
+    .job .main h2 a:hover { background-image: linear-gradient(transparent calc(100% - 1px), var(--accent) 1px); }
+
+    .job .main .byline {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--ink-mid);
+      margin-bottom: 8px;
+    }
+    .job .main .byline .company { font-weight: 600; color: var(--ink); }
+
+    .job .main .desc {
+      font-family: 'Fraunces', serif;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink-mid);
+      max-width: 60ch;
+    }
+
+    .job .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      padding: 1px 7px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 2px;
+    }
+    .tag.remote { background: #e6efe1; color: var(--sage); }
+    .tag.hybrid { background: #faf2dc; color: var(--gold); }
+    .tag.onsite { background: #ece9dd; color: var(--ink-mid); }
+    .tag.source { background: transparent; border: 1px solid var(--rule); color: var(--ink-faint); }
+
+    .job .meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--ink-mid);
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+    }
+
+    .score {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 1;
+      color: var(--accent);
+      font-variation-settings: "opsz" 36;
+    }
+    .score-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-top: -2px;
+    }
+    .date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-faint);
+    }
+
+    .actions { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; padding-top: 4px; }
+
+    .action-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      padding: 4px 10px;
+      background: transparent;
+      border: 1px solid var(--rule);
+      cursor: pointer;
+      color: var(--ink-mid);
+      transition: all 0.15s;
+      width: 110px;
+      text-align: center;
+    }
+    .action-btn:hover { border-color: var(--ink); color: var(--ink); }
+    .action-btn.active.interested { background: var(--sage); color: white; border-color: var(--sage); }
+    .action-btn.active.applied { background: var(--gold); color: white; border-color: var(--gold); }
+    .action-btn.active.dismissed { background: var(--ink-faint); color: white; border-color: var(--ink-faint); }
+
+    .new-flag {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: white;
+      padding: 2px 6px;
+      border-radius: 2px;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--ink-faint);
+      font-style: italic;
+      font-size: 18px;
+    }
+
+    .footer {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: var(--ink-faint);
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    @media (max-width: 720px) {
+      .page { padding: 20px 16px 60px; }
+      .masthead h1 { font-size: 32px; }
+      .masthead { grid-template-columns: 1fr; gap: 4px; }
+      .masthead .left, .masthead .right { text-align: center; }
+      .job { grid-template-columns: 1fr; gap: 8px; }
+      .job .meta { text-align: left; align-items: flex-start; flex-direction: row; justify-content: space-between; }
+      .actions { flex-direction: row; align-items: flex-start; }
+      .action-btn { width: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <div class="left">Vol. 1 &mdash; Daily Edition</div>
+    <h1>The Roles</h1>
+    <div class="right" id="todaysDate">&mdash;</div>
+  </header>
+
+  <div class="subhead">
+    <span>Curated openings &middot; Product leadership &middot; CZ &middot; EU &middot; Remote</span>
+    <span class="stats" id="stats">&mdash;</span>
+  </div>
+
+  <section class="filters">
+    <div class="filter-group">
+      <label for="search">Search</label>
+      <input type="text" id="search" placeholder="title, company, keyword..." />
+    </div>
+    <div class="filter-group">
+      <label>Work mode</label>
+      <div class="pill-row" data-filter="remote_type">
+        <button class="pill active" data-value="">All</button>
+        <button class="pill" data-value="remote">Remote</button>
+        <button class="pill" data-value="hybrid">Hybrid</button>
+        <button class="pill" data-value="on-site">On-site</button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <label>Location</label>
+      <select id="location">
+        <option value="">Anywhere</option>
+        <option value="czech">Czech Republic</option>
+        <option value="europe">Europe / EU</option>
+        <option value="remote">Remote</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Source</label>
+      <select id="source"><option value="">All sources</option></select>
+    </div>
+    <div class="filter-group">
+      <label>Posted within</label>
+      <select id="age">
+        <option value="">Anytime</option>
+        <option value="2">Last 2 days</option>
+        <option value="7">Last 7 days</option>
+        <option value="14">Last 14 days</option>
+        <option value="30">Last 30 days</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Status</label>
+      <div class="pill-row" data-filter="status">
+        <button class="pill active" data-value="">All</button>
+        <button class="pill" data-value="new">New</button>
+        <button class="pill" data-value="interested">Interested</button>
+        <button class="pill" data-value="applied">Applied</button>
+        <button class="pill" data-value="hide-dismissed">Hide dismissed</button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <label>Min. score</label>
+      <input type="number" id="minScore" placeholder="0" min="0" max="100" />
+    </div>
+    <div class="filter-group">
+      <label>Sort by</label>
+      <select id="sort">
+        <option value="score">Score (high → low)</option>
+        <option value="date">Date (newest first)</option>
+        <option value="company">Company (A–Z)</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="listings" id="listings">
+    <div class="empty">Loading roles&hellip;</div>
+  </section>
+
+  <div class="footer" id="footer">&mdash;</div>
+
+</div>
+
+<script>
+const STATE = {
+  jobs: [],
+  filters: {
+    search: '',
+    remote_type: '',
+    location: '',
+    source: '',
+    age: '',
+    status: '',
+    minScore: 0,
+    sort: 'score',
+  },
+  userStates: {}, // {jobId: 'interested' | 'applied' | 'dismissed'}
+};
+
+// --- localStorage for user-set statuses ---
+const STORAGE_KEY = 'roles_user_states_v1';
+try {
+  STATE.userStates = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+} catch (e) { STATE.userStates = {}; }
+
+function saveUserStates() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE.userStates)); } catch (e) {}
+}
+
+// --- Load jobs.json ---
+async function loadJobs() {
+  try {
+    const resp = await fetch('jobs.json?cb=' + Date.now());
+    const data = await resp.json();
+    STATE.jobs = data.jobs || [];
+    document.getElementById('todaysDate').textContent = formatDate(data.generated_at);
+    populateSourceFilter();
+    render();
+  } catch (err) {
+    document.getElementById('listings').innerHTML = '<div class="empty">Could not load jobs.json. Run the GitHub Action at least once.</div>';
+  }
+}
+
+function formatDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+function daysAgo(iso) {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (isNaN(d)) return null;
+  return Math.floor((Date.now() - d.getTime()) / (1000 * 60 * 60 * 24));
+}
+
+function populateSourceFilter() {
+  const sources = [...new Set(STATE.jobs.map(j => j.source))].sort();
+  const sel = document.getElementById('source');
+  for (const s of sources) {
+    const opt = document.createElement('option');
+    opt.value = s;
+    opt.textContent = s;
+    sel.appendChild(opt);
+  }
+}
+
+// --- Filters ---
+function applyFilters(jobs) {
+  const f = STATE.filters;
+  return jobs.filter(j => {
+    if (f.search) {
+      const q = f.search.toLowerCase();
+      const blob = (j.title + ' ' + j.company + ' ' + j.description + ' ' + (j.tags || []).join(' ')).toLowerCase();
+      if (!blob.includes(q)) return false;
+    }
+    if (f.remote_type && (j.remote_type || '').toLowerCase() !== f.remote_type) return false;
+    if (f.location) {
+      const loc = (j.location + ' ' + j.description).toLowerCase();
+      if (f.location === 'czech' && !/czech|cesk|prague|praha/.test(loc)) return false;
+      if (f.location === 'europe' && !/europe|eu|emea|german|france|spain|italy|poland|nether|czech|portugal/.test(loc)) return false;
+      if (f.location === 'remote' && !(j.remote_type === 'remote' || /remote/.test(loc))) return false;
+    }
+    if (f.source && j.source !== f.source) return false;
+    if (f.age) {
+      const days = daysAgo(j.posted_date || j.first_seen);
+      if (days === null) return true;
+      if (days > parseInt(f.age, 10)) return false;
+    }
+    const userStatus = STATE.userStates[j.id];
+    if (f.status === 'hide-dismissed') {
+      if (userStatus === 'dismissed') return false;
+    } else if (f.status) {
+      const effective = userStatus || j.status || 'new';
+      if (effective !== f.status) return false;
+    }
+    if (f.minScore && (j.score || 0) < f.minScore) return false;
+    return true;
+  });
+}
+
+function sortJobs(jobs) {
+  const sort = STATE.filters.sort;
+  return [...jobs].sort((a, b) => {
+    if (sort === 'score') return (b.score || 0) - (a.score || 0);
+    if (sort === 'date') {
+      const da = new Date(a.posted_date || a.first_seen || 0).getTime();
+      const db = new Date(b.posted_date || b.first_seen || 0).getTime();
+      return db - da;
+    }
+    if (sort === 'company') return (a.company || '').localeCompare(b.company || '');
+    return 0;
+  });
+}
+
+// --- Rendering ---
+function escapeHtml(s) {
+  if (!s) return '';
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function modeClass(t) {
+  if (!t) return '';
+  if (t === 'remote') return 'remote';
+  if (t === 'hybrid') return 'hybrid';
+  return 'onsite';
+}
+
+function jobHTML(j, index) {
+  const userStatus = STATE.userStates[j.id] || '';
+  const days = daysAgo(j.posted_date || j.first_seen);
+  const isNew = days !== null && days <= 1;
+  const desc = (j.description || '').slice(0, 280);
+  const numStr = String(index + 1).padStart(2, '0');
+  return `
+    <article class="job" data-id="${j.id}" data-status="${userStatus}">
+      <div class="number">№ ${numStr}</div>
+      <div class="main">
+        <h2>${isNew ? '<span class="new-flag">new</span>' : ''}<a href="${escapeHtml(j.url)}" target="_blank" rel="noopener">${escapeHtml(j.title)}</a></h2>
+        <div class="byline"><span class="company">${escapeHtml(j.company || 'Unknown company')}</span> &middot; ${escapeHtml(j.location || '—')}</div>
+        ${desc ? `<div class="desc">${escapeHtml(desc)}${j.description && j.description.length > 280 ? '…' : ''}</div>` : ''}
+        <div class="tags">
+          ${j.remote_type ? `<span class="tag ${modeClass(j.remote_type)}">${escapeHtml(j.remote_type)}</span>` : ''}
+          <span class="tag source">${escapeHtml(j.source)}</span>
+          ${(j.tags || []).slice(0, 3).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}
+        </div>
+      </div>
+      <div class="meta">
+        <div class="score">${j.score || 0}</div>
+        <div class="score-label">match</div>
+        <div class="date">${days !== null ? (days === 0 ? 'today' : days + 'd ago') : '—'}</div>
+      </div>
+      <div class="actions">
+        <button class="action-btn interested ${userStatus === 'interested' ? 'active' : ''}" data-action="interested">★ Interested</button>
+        <button class="action-btn applied ${userStatus === 'applied' ? 'active' : ''}" data-action="applied">✓ Applied</button>
+        <button class="action-btn dismissed ${userStatus === 'dismissed' ? 'active' : ''}" data-action="dismissed">✕ Dismiss</button>
+      </div>
+    </article>
+  `;
+}
+
+function render() {
+  const filtered = sortJobs(applyFilters(STATE.jobs));
+  const stats = document.getElementById('stats');
+  stats.innerHTML = `<strong>${filtered.length}</strong> shown of ${STATE.jobs.length} on the board`;
+
+  const el = document.getElementById('listings');
+  if (filtered.length === 0) {
+    el.innerHTML = '<div class="empty">Nothing matches these filters. Loosen one and try again.</div>';
+  } else {
+    el.innerHTML = filtered.map((j, i) => jobHTML(j, i)).join('');
+  }
+
+  const f = document.getElementById('footer');
+  f.textContent = 'Edit search criteria in config.yaml · Aggregator runs daily at 06:00 UTC';
+}
+
+// --- Wire up events ---
+function bindEvents() {
+  document.getElementById('search').addEventListener('input', e => {
+    STATE.filters.search = e.target.value;
+    render();
+  });
+  document.getElementById('location').addEventListener('change', e => {
+    STATE.filters.location = e.target.value; render();
+  });
+  document.getElementById('source').addEventListener('change', e => {
+    STATE.filters.source = e.target.value; render();
+  });
+  document.getElementById('age').addEventListener('change', e => {
+    STATE.filters.age = e.target.value; render();
+  });
+  document.getElementById('sort').addEventListener('change', e => {
+    STATE.filters.sort = e.target.value; render();
+  });
+  document.getElementById('minScore').addEventListener('input', e => {
+    STATE.filters.minScore = parseInt(e.target.value, 10) || 0; render();
+  });
+
+  document.querySelectorAll('.pill-row').forEach(row => {
+    row.addEventListener('click', e => {
+      const btn = e.target.closest('.pill');
+      if (!btn) return;
+      const filterName = row.dataset.filter;
+      row.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      STATE.filters[filterName] = btn.dataset.value;
+      render();
+    });
+  });
+
+  document.getElementById('listings').addEventListener('click', e => {
+    const btn = e.target.closest('.action-btn');
+    if (!btn) return;
+    const article = btn.closest('.job');
+    const id = article.dataset.id;
+    const action = btn.dataset.action;
+    const current = STATE.userStates[id];
+    if (current === action) {
+      delete STATE.userStates[id];
+    } else {
+      STATE.userStates[id] = action;
+    }
+    saveUserStates();
+    render();
+  });
+}
+
+bindEvents();
+loadJobs();
+</script>
+</body>
+</html>

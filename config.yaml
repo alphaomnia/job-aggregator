@@ -1,0 +1,94 @@
+# Your search preferences. Edit freely; the orchestrator reloads this every run.
+
+# Role keywords - jobs whose title or description matches more of these score higher.
+# Group them by weight so a "Chief Product Officer" beats a generic "Product Manager".
+roles:
+  # Strong matches (weight 10)
+  strong:
+    - "Chief Product Officer"
+    - "CPO"
+    - "VP of Product"
+    - "VP Product"
+    - "Head of Product"
+    - "Director of Product"
+    - "Director, Product"
+    - "Fractional CPO"
+    - "Fractional Chief Product"
+    - "Interim CPO"
+    - "Interim Head of Product"
+
+  # Good matches (weight 5)
+  good:
+    - "Senior Product Manager"
+    - "Lead Product Manager"
+    - "Principal Product Manager"
+    - "Group Product Manager"
+    - "Product Lead"
+
+  # Avoid - explicit negative signals (penalty -20, effectively excludes)
+  avoid:
+    - "Junior"
+    - "Intern"
+    - "Graduate"
+    - "Associate Product Manager"
+    - "Working student"
+
+# Location preferences - in priority order.
+# Czech Republic > EU remote > Global remote.
+locations:
+  priority:
+    - "Czech Republic"
+    - "Czechia"
+    - "Prague"
+    - "Praha"
+  acceptable:
+    - "EU"
+    - "Europe"
+    - "EMEA"
+    - "European Union"
+    - "Remote"
+    - "Worldwide"
+
+# Remote / hybrid / on-site preference.
+# Include = will appear in results. Exclude = will be filtered out.
+work_modes:
+  include:
+    - "remote"
+    - "hybrid"
+    - "on-site"  # only matters for Prague-based roles
+  prefer:
+    - "remote"
+    - "hybrid"
+
+# Contract types you're open to.
+contract_types:
+  - "full-time"
+  - "contract"
+  - "freelance"
+  - "fractional"
+  - "interim"
+  - "part-time"
+
+# Seniority floor - skip anything obviously below this.
+min_seniority: "senior"  # one of: junior, mid, senior, lead, director, vp, c-level
+
+# How many days back to consider a posting "fresh"
+max_age_days: 14
+
+# Minimum score for a job to be included in the email digest.
+# Tune this after the first few days - if you get too few/too many.
+digest_score_threshold: 15
+
+# How many top new matches to include in each digest email (the rest are just on the dashboard).
+digest_max_jobs: 20
+
+# Sources to enable. Comment any out you don't want.
+adapters:
+  - remotive
+  - weworkremotely
+  - workingnomads
+  - himalayas
+  - jobgether
+  - freelancermap
+  - dynamitejobs
+  - startupjobs_cz
