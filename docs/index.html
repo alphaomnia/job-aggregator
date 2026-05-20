@@ -390,13 +390,17 @@
       <label>Min. score</label>
       <input type="number" id="minScore" placeholder="0" min="0" max="100" />
     </div>
-    <div class="filter-group">
+  <div class="filter-group">
       <label>Sort by</label>
       <select id="sort">
         <option value="score">Score (high → low)</option>
         <option value="date">Date (newest first)</option>
         <option value="company">Company (A–Z)</option>
       </select>
+    </div>
+    <div class="filter-group" style="justify-content: flex-end;">
+      <label>&nbsp;</label>
+      <button id="resetFilters" style="font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.08em; padding: 6px 12px; background: transparent; border: 1px solid #1a1a1a; cursor: pointer; color: #1a1a1a; text-transform: uppercase;">Reset filters</button>
     </div>
   </section>
 
@@ -482,11 +486,15 @@ function applyFilters(jobs) {
       if (!blob.includes(q)) return false;
     }
     if (f.remote_type && (j.remote_type || '').toLowerCase() !== f.remote_type) return false;
-    if (f.location) {
+if (f.location) {
       const loc = (j.location + ' ' + j.description).toLowerCase();
-      if (f.location === 'czech' && !/czech|cesk|prague|praha/.test(loc)) return false;
-      if (f.location === 'europe' && !/europe|eu|emea|german|france|spain|italy|poland|nether|czech|portugal/.test(loc)) return false;
-      if (f.location === 'remote' && !(j.remote_type === 'remote' || /remote/.test(loc))) return false;
+      const isRemote = j.remote_type === 'remote' || /\bremote\b|worldwide|anywhere/.test(loc);
+      if (f.location === 'czech' && !/czech|cesk|prague|praha|\bcz\b/.test(loc)) return false;
+      if (f.location === 'europe') {
+        const europeRegex = /europe|\beu\b|emea|german|france|spain|italy|poland|nether|czech|cesk|prague|portugal|sweden|denmark|norway|finland|ireland|belgium|austria|switzer|hungary|romania|bulgaria|greece|croatia|slovak|sloven|estonia|latvia|lithuania|malta|luxembourg|\bnl\b|\bde\b|\buk\b|\bfr\b|\bes\b|\bie\b|\bat\b|\bch\b|\bse\b|\bdk\b|\bpl\b/;
+        if (!europeRegex.test(loc) && !isRemote) return false;
+      }
+      if (f.location === 'remote' && !isRemote) return false;
     }
     if (f.source && j.source !== f.source) return false;
     if (f.age) {
@@ -602,6 +610,21 @@ function bindEvents() {
   });
   document.getElementById('minScore').addEventListener('input', e => {
     STATE.filters.minScore = parseInt(e.target.value, 10) || 0; render();
+  });
+  document.getElementById('resetFilters').addEventListener('click', () => {
+    STATE.filters = { search: '', remote_type: '', location: '', source: '', age: '', status: '', minScore: 0, sort: 'score' };
+    document.getElementById('search').value = '';
+    document.getElementById('location').value = '';
+    document.getElementById('source').value = '';
+    document.getElementById('age').value = '';
+    document.getElementById('sort').value = 'score';
+    document.getElementById('minScore').value = '';
+    document.querySelectorAll('.pill-row').forEach(row => {
+      row.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      const allPill = row.querySelector('.pill[data-value=""]');
+      if (allPill) allPill.classList.add('active');
+    });
+    render();
   });
 
   document.querySelectorAll('.pill-row').forEach(row => {
