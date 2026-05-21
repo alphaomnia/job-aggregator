@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-21T08:31:38.306558Z",
+  "generated_at": "2026-05-21T16:30:26.630257Z",
   "count": 106,
   "jobs": [
     {
@@ -291,32 +291,6 @@
       "status": "new"
     },
     {
-      "title": "Paid Media Specialist",
-      "company": "Noventra Group Europe",
-      "url": "https://remotive.com/remote-jobs/marketing/paid-media-specialist-2090885",
-      "source": "remotive",
-      "location": "Worldwide",
-      "remote_type": "remote",
-      "description": "Noventra Group Europe works with selected brands, suppliers, and retail partners across the European market, with a focus on product sourcing, procurement support, and commercial retail collaboration. \n   \n As our partner brands continue to expand their presence across European retail channels, we are looking for a Remote Paid Media Specialist to support campaign coordination, audience research, paid advertising, and market development activities across Meta Ads and Google Ads. \n   \n In this rol",
-      "posted_date": "2026-05-18T09:03:26",
-      "salary": "$65k - $85k",
-      "tags": [
-        "ecommerce",
-        "research",
-        "advertising",
-        "retail",
-        "A/B Testing",
-        "lead generation",
-        "google ads",
-        "testing",
-        "paid media"
-      ],
-      "id": "b614952c8c074d7a",
-      "first_seen": "2026-05-20",
-      "score": 26,
-      "status": "new"
-    },
-    {
       "title": "Account Executive - Dental",
       "company": "Clipboard Health",
       "url": "https://www.workingnomads.com/job/go/1613235/",
@@ -396,6 +370,32 @@
       "id": "b477aa56e5f7ed77",
       "first_seen": "2026-05-20",
       "score": 24,
+      "status": "new"
+    },
+    {
+      "title": "Paid Media Specialist",
+      "company": "Noventra Group Europe",
+      "url": "https://remotive.com/remote-jobs/marketing/paid-media-specialist-2090885",
+      "source": "remotive",
+      "location": "Worldwide",
+      "remote_type": "remote",
+      "description": "Noventra Group Europe works with selected brands, suppliers, and retail partners across the European market, with a focus on product sourcing, procurement support, and commercial retail collaboration. \n   \n As our partner brands continue to expand their presence across European retail channels, we are looking for a Remote Paid Media Specialist to support campaign coordination, audience research, paid advertising, and market development activities across Meta Ads and Google Ads. \n   \n In this rol",
+      "posted_date": "2026-05-18T09:03:26",
+      "salary": "$65k - $85k",
+      "tags": [
+        "ecommerce",
+        "research",
+        "advertising",
+        "retail",
+        "A/B Testing",
+        "lead generation",
+        "google ads",
+        "testing",
+        "paid media"
+      ],
+      "id": "b614952c8c074d7a",
+      "first_seen": "2026-05-20",
+      "score": 22,
       "status": "new"
     },
     {
