@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-21T06:31:42.203069Z",
-  "count": 104,
+  "generated_at": "2026-05-21T08:31:38.306558Z",
+  "count": 106,
   "jobs": [
     {
       "title": "Senior DevOps Engineer",
@@ -22,6 +22,64 @@
       "id": "d94e8bf9f32514bd",
       "first_seen": "2026-05-21",
       "score": 26,
+      "status": "new"
+    },
+    {
+      "title": "Mid/Senior AI Cinematic Video Editor (Full Remote - Worldwide)",
+      "company": "EverAI",
+      "url": "https://remotive.com/remote-jobs/artificial-intelligence/mid-senior-ai-cinematic-video-editor-full-remote-worldwide-2090887",
+      "source": "remotive",
+      "location": "Worldwide",
+      "remote_type": "remote",
+      "description": "Our Vision & Products    🚀 EverAI — Building the Future of AI Companionship     One of the Top 15 Largest & Fastest-Growing AI Companies in the World    50 Million Users in 2 years — Help Us Reach 100M first, 500M next   At  EverAI , we’re shaping what it means to connect with AI. With  50 million users and counting , we're not just building products — we're creating entirely new categories.  Our flagship product is the  world’s largest AI companionship platform , redefining relationships for mi",
+      "posted_date": "2026-05-19T20:34:33",
+      "salary": "",
+      "tags": [
+        "excel",
+        "video",
+        "AI/ML",
+        "customer acquisition",
+        "graphic design",
+        "video production",
+        "after effects",
+        "editing",
+        "SOLID",
+        "REST",
+        "insurance"
+      ],
+      "id": "c713835c2aea3850",
+      "first_seen": "2026-05-21",
+      "score": 26,
+      "status": "new"
+    },
+    {
+      "title": "Senior AI Video Artist",
+      "company": "EverAI",
+      "url": "https://remotive.com/remote-jobs/marketing/senior-ai-video-artist-2089994",
+      "source": "remotive",
+      "location": "Worldwide",
+      "remote_type": "remote",
+      "description": "Our Vision & Products    🚀 EverAI — Building the Future of AI Companionship     One of the Top 15 Largest & Fastest-Growing AI Companies in the World    50 Million Users in 2 years — Help Us Reach 100M first, 500M next   At  EverAI , we’re shaping what it means to connect with AI. With  50 million users and counting , we're not just building products — we're creating entirely new categories.  Our flagship product is the  world’s largest AI companionship platform , redefining relationships for mi",
+      "posted_date": "2026-04-24T08:15:19",
+      "salary": "-",
+      "tags": [
+        "excel",
+        "video",
+        "AI/ML",
+        "customer acquisition",
+        "advertising",
+        "paid marketing",
+        "video ads",
+        "after effects",
+        "editing",
+        "video editing",
+        "user acquisition",
+        "motion design",
+        "insurance"
+      ],
+      "id": "94b581fa910859dd",
+      "first_seen": "2026-05-21",
+      "score": 18,
       "status": "new"
     },
     {
@@ -525,31 +583,6 @@
       "status": "new"
     },
     {
-      "title": "Business Transformation Lead",
-      "company": "Expion Health",
-      "url": "https://remotive.com/remote-jobs/artificial-intelligence/business-transformation-lead-2090881",
-      "source": "remotive",
-      "location": "USA",
-      "remote_type": "remote",
-      "description": "Title : Business Transformation Lead \n  Location : Fully Remote \n  Reports To : President, Service & Growth \n   \n Expion Health is building the future of pharmacy economics. As architects of prescription economics, we design how pharmacy value is created, aligning cost, clinical decisions, and performance into one accountable system that moves beyond rebates. We help organizations stay ahead of pharmacy market change with clear insight, bold thinking, and strategies built for what's next-leading",
-      "posted_date": "2026-05-13T06:46:26",
-      "salary": "$175k - $225k",
-      "tags": [
-        "api",
-        "AI/ML",
-        "automation",
-        "healthcare",
-        "spark",
-        "startup",
-        "infrastructure",
-        "insurance"
-      ],
-      "id": "0df9d7659eeab4c1",
-      "first_seen": "2026-05-20",
-      "score": 22,
-      "status": "new"
-    },
-    {
       "title": "Staff Product Manager -  Liability",
       "company": "Assured",
       "url": "https://weworkremotely.com/remote-jobs/assured-staff-product-manager-liability",
@@ -601,6 +634,31 @@
       "id": "34fda3c60be3e062",
       "first_seen": "2026-05-20",
       "score": 22,
+      "status": "new"
+    },
+    {
+      "title": "Business Transformation Lead",
+      "company": "Expion Health",
+      "url": "https://remotive.com/remote-jobs/artificial-intelligence/business-transformation-lead-2090881",
+      "source": "remotive",
+      "location": "USA",
+      "remote_type": "remote",
+      "description": "Title : Business Transformation Lead \n  Location : Fully Remote \n  Reports To : President, Service & Growth \n   \n Expion Health is building the future of pharmacy economics. As architects of prescription economics, we design how pharmacy value is created, aligning cost, clinical decisions, and performance into one accountable system that moves beyond rebates. We help organizations stay ahead of pharmacy market change with clear insight, bold thinking, and strategies built for what's next-leading",
+      "posted_date": "2026-05-13T06:46:26",
+      "salary": "$175k - $225k",
+      "tags": [
+        "api",
+        "AI/ML",
+        "automation",
+        "healthcare",
+        "spark",
+        "startup",
+        "infrastructure",
+        "insurance"
+      ],
+      "id": "0df9d7659eeab4c1",
+      "first_seen": "2026-05-20",
+      "score": 18,
       "status": "new"
     },
     {
