@@ -1,0 +1,84 @@
+# =============================================================================
+# User-defined sources
+# =============================================================================
+#
+# Add new job sources here without writing Python. The `generic` adapter reads
+# this file on every run and pulls from each entry below.
+#
+# Each entry needs:
+#   - name:   a unique label (becomes the source filter in the dashboard)
+#   - type:   one of: rss, jsonld, json_api
+#   - url(s): plus optional defaults depending on type
+#
+# After committing a change, trigger a workflow run from the Actions tab.
+# The log will show e.g. `[generic/Your Source Name] returned 12 postings`.
+# If a source breaks, only it logs an error - the rest keep running.
+#
+# =============================================================================
+# THREE SUPPORTED TYPES
+# =============================================================================
+#
+# 1) RSS / Atom feed  (easiest - most WordPress and many job boards expose one)
+# -----------------------------------------------------------------------------
+#   - name: "Example RSS Source"
+#     type: rss
+#     url: "https://example.com/jobs/feed/"
+#     default_location: "Europe"    # optional - used when the feed doesn't say
+#     default_remote: ""            # optional - "remote", "hybrid", or ""
+#
+# 2) JSON-LD pages  (modern job sites that publish structured data for Google)
+# -----------------------------------------------------------------------------
+#   - name: "Example JSON-LD Board"
+#     type: jsonld
+#     urls:                         # one or more category/listing pages
+#       - "https://example.com/jobs/product-management"
+#       - "https://example.com/jobs/executive"
+#     default_location: ""
+#
+#   To test if a site supports this: view-source on its job listing page and
+#   search for `application/ld+json`. If you find `"@type": "JobPosting"`
+#   blocks in there, this adapter will work.
+#
+# 3) JSON API  (direct endpoint - rare but cleanest when available)
+# -----------------------------------------------------------------------------
+#   - name: "Example JSON API"
+#     type: json_api
+#     url: "https://api.example.com/jobs.json"
+#     fields:                       # tell us how to map their JSON to ours
+#       title: "name"
+#       company: "employer.name"   # dotted paths for nested fields
+#       url: "permalink"
+#       location: "city"
+#       description: "summary"
+#       posted_date: "created_at"
+#     default_location: "—"
+#     default_remote: "remote"
+#
+#   The adapter auto-detects whether the response is a top-level array or
+#   wrapped under `jobs`, `data`, `results`, `items`, `postings`, or `openings`.
+#
+# =============================================================================
+
+sources: []
+  # ---------------------------------------------------------------------------
+  # Below are some examples you can uncomment to get started. Remove the leading
+  # `[]` above when you add your first real entry (YAML needs either an empty
+  # list `[]` OR entries, not both).
+  # ---------------------------------------------------------------------------
+  #
+  # - name: "Hacker News Who Is Hiring"
+  #   type: rss
+  #   url: "https://hnrss.org/jobs"
+  #   default_location: "Global"
+  #
+  # - name: "EU Remote Jobs"
+  #   type: rss
+  #   url: "https://euremotejobs.com/feed/"
+  #   default_location: "Europe"
+  #   default_remote: "remote"
+  #
+  # - name: "Some Company Careers"
+  #   type: jsonld
+  #   urls:
+  #     - "https://www.example.com/careers"
+  #   default_location: "—"
