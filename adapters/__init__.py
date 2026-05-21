@@ -11,6 +11,7 @@ from .startupjobs_cz import StartupJobsCzAdapter
 from .welcometothejungle import WelcomeToTheJungleAdapter
 from .theorg import TheOrgAdapter
 from .eustartups import EuStartupsAdapter
+from .talent_cz import TalentCzAdapter
 
 
 ADAPTERS: dict[str, type[BaseAdapter]] = {
@@ -25,6 +26,7 @@ ADAPTERS: dict[str, type[BaseAdapter]] = {
     "welcometothejungle": WelcomeToTheJungleAdapter,
     "theorg": TheOrgAdapter,
     "eustartups": EuStartupsAdapter,
+    "talent_cz": TalentCzAdapter,
 }
 
 
