@@ -1,7 +1,29 @@
 {
-  "generated_at": "2026-05-20T10:55:09.229955Z",
-  "count": 103,
+  "generated_at": "2026-05-21T06:31:42.203069Z",
+  "count": 104,
   "jobs": [
+    {
+      "title": "Senior DevOps Engineer",
+      "company": "Lemon.io",
+      "url": "https://www.workingnomads.com/job/go/1614075/",
+      "source": "workingnomads",
+      "location": "Europe, North America, Latin America, APAC",
+      "remote_type": "remote",
+      "description": "<p>Are you a talented Senior DevOps looking for a remote job that lets you show your skills and get decent compensation? Look no further than <a href=\"https://lemon.io/for-developers/?utm_source=workingnomads&amp;utm_medium=job_ad&amp;utm_campaign=supply_en_devops_may_2026_job_ad\" rel=\"nofollow\" target=\"_blank\">Lemon.io</a> — the marketplace that connects you with hand-picked startups in the US and Europe.</p>\n<p><strong>What we offer:</strong></p>\n<ul>\n<li>The rate depends on your seniority lev",
+      "posted_date": "2026-05-20T07:33:09-04:00",
+      "salary": "",
+      "tags": [
+        "devops",
+        "azure",
+        "aws",
+        "kubernetes",
+        "python"
+      ],
+      "id": "d94e8bf9f32514bd",
+      "first_seen": "2026-05-21",
+      "score": 26,
+      "status": "new"
+    },
     {
       "title": "Head of Product",
       "company": "Gypsy Collective",
@@ -47,7 +69,7 @@
       "tags": [],
       "id": "c9a58b8e319a2865",
       "first_seen": "2026-05-20",
-      "score": 38,
+      "score": 34,
       "status": "new"
     },
     {
