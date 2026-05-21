@@ -12,6 +12,7 @@ from .welcometothejungle import WelcomeToTheJungleAdapter
 from .theorg import TheOrgAdapter
 from .eustartups import EuStartupsAdapter
 from .talent_cz import TalentCzAdapter
+from .generic import GenericAdapter
 
 
 ADAPTERS: dict[str, type[BaseAdapter]] = {
@@ -27,6 +28,7 @@ ADAPTERS: dict[str, type[BaseAdapter]] = {
     "theorg": TheOrgAdapter,
     "eustartups": EuStartupsAdapter,
     "talent_cz": TalentCzAdapter,
+    "generic": GenericAdapter,
 }
 
 
