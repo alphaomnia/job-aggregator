@@ -2,10 +2,10 @@ name: Daily Job Aggregator
 
 on:
   schedule:
-    # 06:00 UTC = 07:00 Prague winter / 08:00 Prague summer
-    - cron: "0 6 * * *"
-  workflow_dispatch:  # lets you trigger manually from the Actions tab
-
+    - cron: "0 6 * * *"   # 06:00 UTC / 08:00 Prague summer / 07:00 winter
+    - cron: "0 14 * * *"  # 14:00 UTC / 16:00 Prague summer - safety net
+  workflow_dispatch:
+  
 permissions:
   contents: write  # so the workflow can commit jobs.json back to the repo
 
