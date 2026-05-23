@@ -1,7 +1,77 @@
 {
-  "generated_at": "2026-05-22T19:18:26.349991Z",
-  "count": 119,
+  "generated_at": "2026-05-23T11:00:42.501494Z",
+  "count": 122,
   "jobs": [
+    {
+      "title": "Product Owner Zendesk  Customer Service (m/w/d) // remote möglich",
+      "company": "E. Breuninger& Co.",
+      "url": "https://weworkremotely.com/remote-jobs/e-breuninger-co-product-owner-zendesk-customer-service-m-w-d-remote-moglich",
+      "source": "weworkremotely",
+      "location": "Remote",
+      "remote_type": "remote",
+      "description": "<p>\n  <strong>Headquarters:</strong> Stuttgart, Deutschland\n</p>\n\n<div><div><p class=\"googlejobs-paragraph--empty\"></p><h2 class=\"title\">Unternehmensbeschreibung</h2></div><div class=\"wysiwyg\"><p>Fashion und Lifestyle, 6.500 Mitarbeiter:innen, 13 Department Stores, Online-Shops in Deutschland, Polen, Österreich, Belgien, Luxemburg, Spanien, Italien, Tschechien, den Niederlanden und der Schweiz, über 2.000 Marken, 25 Restaurants &amp; Confiserien, 15 erstklassige Services, drei Friseur-Salons und",
+      "posted_date": "2026-05-22T20:31:19+00:00",
+      "salary": "",
+      "tags": [],
+      "id": "444b97d269cd8e21",
+      "first_seen": "2026-05-23",
+      "score": 26,
+      "status": "new"
+    },
+    {
+      "title": "Senior Product Analyst, Remote",
+      "company": "Aledade",
+      "url": "https://weworkremotely.com/remote-jobs/aledade-senior-product-analyst-remote",
+      "source": "weworkremotely",
+      "location": "Remote",
+      "remote_type": "remote",
+      "description": "<p>\n  <strong>Headquarters:</strong> Bethesda, MD\n</p>\n\n<div class=\"content\"><div class=\"section-wrapper page-full-width\"><div class=\"section page-centered\"><div>As a Product Analyst you will be a key supporting member of the teams responsible for ingesting data from our payer partners; specifically, medical and pharmacy claims, patient eligibility, and care gaps data. The Analyst will work alongside the product team members and engineers to triage and investigate issues, provide operational sup",
+      "posted_date": "2026-05-22T20:31:14+00:00",
+      "salary": "",
+      "tags": [],
+      "id": "676404c496bcbae6",
+      "first_seen": "2026-05-23",
+      "score": 26,
+      "status": "new"
+    },
+    {
+      "title": "Staff Product Engineer",
+      "company": "LawnStarter",
+      "url": "https://remotive.com/remote-jobs/product/staff-product-engineer-2090890",
+      "source": "remotive",
+      "location": "Brazil",
+      "remote_type": "remote",
+      "description": "About LawnStarter  \n LawnStarter is the nation's leading on-demand marketplace for lawn care and outdoor services, with over $100M in annual bookings. We're expanding beyond lawn care to become the one-stop shop for all home services — operating across three brands (LawnStarter, Lawn Love, Home Gnome) on a single shared platform. \n  About Engineering at LawnStarter  \n We're restructuring engineering around  initiative teams : a Product Engineer paired with a PM and a designer, with an Engineerin",
+      "posted_date": "2026-05-21T16:42:09",
+      "salary": "$80k - $100k",
+      "tags": [
+        "AWS",
+        "backend",
+        "frontend",
+        "php",
+        "react",
+        "security",
+        "UI/UX",
+        "AI/ML",
+        "jira",
+        "react native",
+        "research",
+        "documentation",
+        "laravel",
+        "Typescript ",
+        "people management",
+        "prototyping",
+        "engineering management",
+        "marketplace",
+        "github",
+        "REST",
+        "datadog"
+      ],
+      "id": "2dbcd7f22c60374f",
+      "first_seen": "2026-05-23",
+      "score": 18,
+      "status": "new"
+    },
     {
       "title": "Short-Form & VSL Video Editor",
       "company": "Sun Coast Sciences",
@@ -245,7 +315,7 @@
       ],
       "id": "d94e8bf9f32514bd",
       "first_seen": "2026-05-21",
-      "score": 26,
+      "score": 22,
       "status": "new"
     },
     {
@@ -273,7 +343,7 @@
       ],
       "id": "c713835c2aea3850",
       "first_seen": "2026-05-21",
-      "score": 26,
+      "score": 22,
       "status": "new"
     },
     {
@@ -511,28 +581,7 @@
       "tags": [],
       "id": "d29d7ce36a09d948",
       "first_seen": "2026-05-20",
-      "score": 28,
-      "status": "new"
-    },
-    {
-      "title": "Account Executive - Dental",
-      "company": "Clipboard Health",
-      "url": "https://www.workingnomads.com/job/go/1613235/",
-      "source": "workingnomads",
-      "location": "Remote",
-      "remote_type": "remote",
-      "description": "<p><strong>About the Role</strong></p>\n<p>The Account Executive will be instrumental in growing Clipboard's footprint by bringing new dental offices onto the platform. Dental offices are core to the Clipboard Dental marketplace — the Account Executive is responsible for identifying prospective dental offices, initiating contact, and guiding them through the full sales cycle from cold outreach to activation. This is a full-cycle sales role where you own your pipeline end-to-end: prospecting, pitc",
-      "posted_date": "2026-05-20T02:53:17-04:00",
-      "salary": "",
-      "tags": [
-        "account executive",
-        "english",
-        "cold calling",
-        "phone"
-      ],
-      "id": "ac5bd601c909a28e",
-      "first_seen": "2026-05-20",
-      "score": 26,
+      "score": 24,
       "status": "new"
     },
     {
@@ -572,6 +621,27 @@
       "id": "b477aa56e5f7ed77",
       "first_seen": "2026-05-20",
       "score": 24,
+      "status": "new"
+    },
+    {
+      "title": "Account Executive - Dental",
+      "company": "Clipboard Health",
+      "url": "https://www.workingnomads.com/job/go/1613235/",
+      "source": "workingnomads",
+      "location": "Remote",
+      "remote_type": "remote",
+      "description": "<p><strong>About the Role</strong></p>\n<p>The Account Executive will be instrumental in growing Clipboard's footprint by bringing new dental offices onto the platform. Dental offices are core to the Clipboard Dental marketplace — the Account Executive is responsible for identifying prospective dental offices, initiating contact, and guiding them through the full sales cycle from cold outreach to activation. This is a full-cycle sales role where you own your pipeline end-to-end: prospecting, pitc",
+      "posted_date": "2026-05-20T02:53:17-04:00",
+      "salary": "",
+      "tags": [
+        "account executive",
+        "english",
+        "cold calling",
+        "phone"
+      ],
+      "id": "ac5bd601c909a28e",
+      "first_seen": "2026-05-20",
+      "score": 22,
       "status": "new"
     },
     {
@@ -727,6 +797,38 @@
       "status": "new"
     },
     {
+      "title": "Staff Product Manager -  Liability",
+      "company": "Assured",
+      "url": "https://weworkremotely.com/remote-jobs/assured-staff-product-manager-liability",
+      "source": "weworkremotely",
+      "location": "Remote",
+      "remote_type": "remote",
+      "description": "<p>\n  <strong>Headquarters:</strong> Remote\n</p>\n\n<p>Assured is on a mission to modernize insurance. Claims processing (i.e. should we pay this claim?), while often overlooked, is the foundation of the entire industry. It’s currently highly manual, involving phone calls, faxes, and gut instinct, costing tens of billions of dollars a year. We can do better.</p><p></p><p>At Assured, we provide large insurers with the software solutions they need to win in a modern, technology-driven world. From se",
+      "posted_date": "2026-05-15T20:31:12+00:00",
+      "salary": "",
+      "tags": [],
+      "id": "2ed07dc846064a9d",
+      "first_seen": "2026-05-20",
+      "score": 22,
+      "status": "new"
+    },
+    {
+      "title": "Senior Analytics Developer, Brokerage & Ledger Product Data Science",
+      "company": "Wealthsimple",
+      "url": "https://weworkremotely.com/remote-jobs/wealthsimple-senior-analytics-developer-brokerage-ledger-product-data-science",
+      "source": "weworkremotely",
+      "location": "Remote",
+      "remote_type": "remote",
+      "description": "<p>\n  <strong>Headquarters:</strong> Remote / Canada\n</p>\n\n<div class=\"content\"><div class=\"section-wrapper page-full-width\"><div class=\"section page-centered\"><div><span><b>Build something people love</b></span></div><div>Wealthsimple is on a mission to help everyone achieve financial freedom by reimagining what it means to manage your money. Using smart technology, we take financial services that are often confusing and expensive and make them transparent and low-cost for everyone. We’re the l",
+      "posted_date": "2026-05-16T20:32:27+00:00",
+      "salary": "",
+      "tags": [],
+      "id": "986837e862533c84",
+      "first_seen": "2026-05-20",
+      "score": 22,
+      "status": "new"
+    },
+    {
       "title": "Marketing Manager, Content & AI Enablement",
       "company": "Expion Health",
       "url": "https://remotive.com/remote-jobs/marketing/marketing-manager-content-ai-enablement-2090883",
@@ -762,7 +864,7 @@
       ],
       "id": "9963fbde04cc86aa",
       "first_seen": "2026-05-20",
-      "score": 22,
+      "score": 18,
       "status": "new"
     },
     {
@@ -803,39 +905,7 @@
       ],
       "id": "c94b774e64a3abc3",
       "first_seen": "2026-05-20",
-      "score": 22,
-      "status": "new"
-    },
-    {
-      "title": "Staff Product Manager -  Liability",
-      "company": "Assured",
-      "url": "https://weworkremotely.com/remote-jobs/assured-staff-product-manager-liability",
-      "source": "weworkremotely",
-      "location": "Remote",
-      "remote_type": "remote",
-      "description": "<p>\n  <strong>Headquarters:</strong> Remote\n</p>\n\n<p>Assured is on a mission to modernize insurance. Claims processing (i.e. should we pay this claim?), while often overlooked, is the foundation of the entire industry. It’s currently highly manual, involving phone calls, faxes, and gut instinct, costing tens of billions of dollars a year. We can do better.</p><p></p><p>At Assured, we provide large insurers with the software solutions they need to win in a modern, technology-driven world. From se",
-      "posted_date": "2026-05-15T20:31:12+00:00",
-      "salary": "",
-      "tags": [],
-      "id": "2ed07dc846064a9d",
-      "first_seen": "2026-05-20",
-      "score": 22,
-      "status": "new"
-    },
-    {
-      "title": "Senior Analytics Developer, Brokerage & Ledger Product Data Science",
-      "company": "Wealthsimple",
-      "url": "https://weworkremotely.com/remote-jobs/wealthsimple-senior-analytics-developer-brokerage-ledger-product-data-science",
-      "source": "weworkremotely",
-      "location": "Remote",
-      "remote_type": "remote",
-      "description": "<p>\n  <strong>Headquarters:</strong> Remote / Canada\n</p>\n\n<div class=\"content\"><div class=\"section-wrapper page-full-width\"><div class=\"section page-centered\"><div><span><b>Build something people love</b></span></div><div>Wealthsimple is on a mission to help everyone achieve financial freedom by reimagining what it means to manage your money. Using smart technology, we take financial services that are often confusing and expensive and make them transparent and low-cost for everyone. We’re the l",
-      "posted_date": "2026-05-16T20:32:27+00:00",
-      "salary": "",
-      "tags": [],
-      "id": "986837e862533c84",
-      "first_seen": "2026-05-20",
-      "score": 22,
+      "score": 18,
       "status": "new"
     },
     {
@@ -1380,22 +1450,6 @@
       "status": "new"
     },
     {
-      "title": "Product Manager – Payments",
-      "company": "Plaid",
-      "url": "https://weworkremotely.com/remote-jobs/plaid-product-manager-payments",
-      "source": "weworkremotely",
-      "location": "Remote",
-      "remote_type": "remote",
-      "description": "<p>\n  <strong>Headquarters:</strong> Remote\n    <br /><strong>URL:</strong> <a href=\"https://plaid.com\">https://plaid.com</a>\n</p>\n\n<p>Plaid is looking for a Product Manager to own our payments product line. You'll define the roadmap and work with engineering, design, and go-to-market teams to build products that help consumers and developers interact with the financial system.</p><ul><li>5+ years of product management experience in fintech or payments</li><li>Strong analytical skills and data-d",
-      "posted_date": "2026-04-22T02:29:49+00:00",
-      "salary": "",
-      "tags": [],
-      "id": "5021262e644fb329",
-      "first_seen": "2026-05-20",
-      "score": 18,
-      "status": "new"
-    },
-    {
       "title": "Crypto Trader (Remote, Full Training Provided)",
       "company": "MAIDEL LIMITED",
       "url": "https://weworkremotely.com/remote-jobs/maidel-limited-crypto-trader-remote-full-training-provided",
@@ -1752,6 +1806,22 @@
       "id": "b2ec68acc073a858",
       "first_seen": "2026-05-20",
       "score": 14,
+      "status": "new"
+    },
+    {
+      "title": "Product Manager – Payments",
+      "company": "Plaid",
+      "url": "https://weworkremotely.com/remote-jobs/plaid-product-manager-payments",
+      "source": "weworkremotely",
+      "location": "Remote",
+      "remote_type": "remote",
+      "description": "<p>\n  <strong>Headquarters:</strong> Remote\n    <br /><strong>URL:</strong> <a href=\"https://plaid.com\">https://plaid.com</a>\n</p>\n\n<p>Plaid is looking for a Product Manager to own our payments product line. You'll define the roadmap and work with engineering, design, and go-to-market teams to build products that help consumers and developers interact with the financial system.</p><ul><li>5+ years of product management experience in fintech or payments</li><li>Strong analytical skills and data-d",
+      "posted_date": "2026-04-22T02:29:49+00:00",
+      "salary": "",
+      "tags": [],
+      "id": "5021262e644fb329",
+      "first_seen": "2026-05-20",
+      "score": 13,
       "status": "new"
     },
     {
