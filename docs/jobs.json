@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-23T11:00:42.501494Z",
+  "generated_at": "2026-05-23T17:40:51.282682Z",
   "count": 122,
   "jobs": [
     {
@@ -740,6 +740,38 @@
       "status": "new"
     },
     {
+      "title": "Staff Product Manager -  Liability",
+      "company": "Assured",
+      "url": "https://weworkremotely.com/remote-jobs/assured-staff-product-manager-liability",
+      "source": "weworkremotely",
+      "location": "Remote",
+      "remote_type": "remote",
+      "description": "<p>\n  <strong>Headquarters:</strong> Remote\n</p>\n\n<p>Assured is on a mission to modernize insurance. Claims processing (i.e. should we pay this claim?), while often overlooked, is the foundation of the entire industry. It’s currently highly manual, involving phone calls, faxes, and gut instinct, costing tens of billions of dollars a year. We can do better.</p><p></p><p>At Assured, we provide large insurers with the software solutions they need to win in a modern, technology-driven world. From se",
+      "posted_date": "2026-05-15T20:31:12+00:00",
+      "salary": "",
+      "tags": [],
+      "id": "2ed07dc846064a9d",
+      "first_seen": "2026-05-20",
+      "score": 22,
+      "status": "new"
+    },
+    {
+      "title": "Senior Analytics Developer, Brokerage & Ledger Product Data Science",
+      "company": "Wealthsimple",
+      "url": "https://weworkremotely.com/remote-jobs/wealthsimple-senior-analytics-developer-brokerage-ledger-product-data-science",
+      "source": "weworkremotely",
+      "location": "Remote",
+      "remote_type": "remote",
+      "description": "<p>\n  <strong>Headquarters:</strong> Remote / Canada\n</p>\n\n<div class=\"content\"><div class=\"section-wrapper page-full-width\"><div class=\"section page-centered\"><div><span><b>Build something people love</b></span></div><div>Wealthsimple is on a mission to help everyone achieve financial freedom by reimagining what it means to manage your money. Using smart technology, we take financial services that are often confusing and expensive and make them transparent and low-cost for everyone. We’re the l",
+      "posted_date": "2026-05-16T20:32:27+00:00",
+      "salary": "",
+      "tags": [],
+      "id": "986837e862533c84",
+      "first_seen": "2026-05-20",
+      "score": 22,
+      "status": "new"
+    },
+    {
       "title": "Senior Full-stack React Developer",
       "company": "Lemon.io",
       "url": "https://remotive.com/remote-jobs/software-development/senior-full-stack-react-developer-2088711",
@@ -793,39 +825,7 @@
       ],
       "id": "e92ce0353dea5ac7",
       "first_seen": "2026-05-20",
-      "score": 22,
-      "status": "new"
-    },
-    {
-      "title": "Staff Product Manager -  Liability",
-      "company": "Assured",
-      "url": "https://weworkremotely.com/remote-jobs/assured-staff-product-manager-liability",
-      "source": "weworkremotely",
-      "location": "Remote",
-      "remote_type": "remote",
-      "description": "<p>\n  <strong>Headquarters:</strong> Remote\n</p>\n\n<p>Assured is on a mission to modernize insurance. Claims processing (i.e. should we pay this claim?), while often overlooked, is the foundation of the entire industry. It’s currently highly manual, involving phone calls, faxes, and gut instinct, costing tens of billions of dollars a year. We can do better.</p><p></p><p>At Assured, we provide large insurers with the software solutions they need to win in a modern, technology-driven world. From se",
-      "posted_date": "2026-05-15T20:31:12+00:00",
-      "salary": "",
-      "tags": [],
-      "id": "2ed07dc846064a9d",
-      "first_seen": "2026-05-20",
-      "score": 22,
-      "status": "new"
-    },
-    {
-      "title": "Senior Analytics Developer, Brokerage & Ledger Product Data Science",
-      "company": "Wealthsimple",
-      "url": "https://weworkremotely.com/remote-jobs/wealthsimple-senior-analytics-developer-brokerage-ledger-product-data-science",
-      "source": "weworkremotely",
-      "location": "Remote",
-      "remote_type": "remote",
-      "description": "<p>\n  <strong>Headquarters:</strong> Remote / Canada\n</p>\n\n<div class=\"content\"><div class=\"section-wrapper page-full-width\"><div class=\"section page-centered\"><div><span><b>Build something people love</b></span></div><div>Wealthsimple is on a mission to help everyone achieve financial freedom by reimagining what it means to manage your money. Using smart technology, we take financial services that are often confusing and expensive and make them transparent and low-cost for everyone. We’re the l",
-      "posted_date": "2026-05-16T20:32:27+00:00",
-      "salary": "",
-      "tags": [],
-      "id": "986837e862533c84",
-      "first_seen": "2026-05-20",
-      "score": 22,
+      "score": 18,
       "status": "new"
     },
     {
