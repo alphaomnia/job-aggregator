@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-23T17:40:51.282682Z",
+  "generated_at": "2026-05-24T11:01:53.764412Z",
   "count": 122,
   "jobs": [
     {
@@ -441,6 +441,22 @@
       "status": "new"
     },
     {
+      "title": "Senior Product Manager, Card Experience",
+      "company": "Affirm",
+      "url": "https://weworkremotely.com/remote-jobs/affirm-senior-product-manager-card-experience",
+      "source": "weworkremotely",
+      "location": "Remote",
+      "remote_type": "remote",
+      "description": "<p>\n  <strong>Headquarters:</strong> Remote US\n</p>\n\n<div class=\"job__description body\"><div><p>Affirm is reinventing credit to make it more honest and friendly, giving consumers the flexibility to buy now and pay later without any hidden fees or compounding interest.</p></div><div><p>We’re hiring a Senior Product Manager, Card Acquisition (New Channels) to launch and scale new acquisition channels for the Affirm Card. In this role, you’ll identify high-impact growth opportunities, validate them",
+      "posted_date": "2026-05-16T20:32:51+00:00",
+      "salary": "",
+      "tags": [],
+      "id": "93a1a3799bb29546",
+      "first_seen": "2026-05-20",
+      "score": 34,
+      "status": "new"
+    },
+    {
       "title": "Product Lead, Data & Integrations",
       "company": "Assured",
       "url": "https://weworkremotely.com/remote-jobs/assured-product-lead-data-integrations",
@@ -453,7 +469,7 @@
       "tags": [],
       "id": "4808315d5fa83f05",
       "first_seen": "2026-05-20",
-      "score": 34,
+      "score": 30,
       "status": "new"
     },
     {
@@ -469,23 +485,7 @@
       "tags": [],
       "id": "6b565df1ce78c087",
       "first_seen": "2026-05-20",
-      "score": 34,
-      "status": "new"
-    },
-    {
-      "title": "Senior Product Manager, Card Experience",
-      "company": "Affirm",
-      "url": "https://weworkremotely.com/remote-jobs/affirm-senior-product-manager-card-experience",
-      "source": "weworkremotely",
-      "location": "Remote",
-      "remote_type": "remote",
-      "description": "<p>\n  <strong>Headquarters:</strong> Remote US\n</p>\n\n<div class=\"job__description body\"><div><p>Affirm is reinventing credit to make it more honest and friendly, giving consumers the flexibility to buy now and pay later without any hidden fees or compounding interest.</p></div><div><p>We’re hiring a Senior Product Manager, Card Acquisition (New Channels) to launch and scale new acquisition channels for the Affirm Card. In this role, you’ll identify high-impact growth opportunities, validate them",
-      "posted_date": "2026-05-16T20:32:51+00:00",
-      "salary": "",
-      "tags": [],
-      "id": "93a1a3799bb29546",
-      "first_seen": "2026-05-20",
-      "score": 34,
+      "score": 30,
       "status": "new"
     },
     {
@@ -693,6 +693,22 @@
       "status": "new"
     },
     {
+      "title": "Senior Analytics Developer, Brokerage & Ledger Product Data Science",
+      "company": "Wealthsimple",
+      "url": "https://weworkremotely.com/remote-jobs/wealthsimple-senior-analytics-developer-brokerage-ledger-product-data-science",
+      "source": "weworkremotely",
+      "location": "Remote",
+      "remote_type": "remote",
+      "description": "<p>\n  <strong>Headquarters:</strong> Remote / Canada\n</p>\n\n<div class=\"content\"><div class=\"section-wrapper page-full-width\"><div class=\"section page-centered\"><div><span><b>Build something people love</b></span></div><div>Wealthsimple is on a mission to help everyone achieve financial freedom by reimagining what it means to manage your money. Using smart technology, we take financial services that are often confusing and expensive and make them transparent and low-cost for everyone. We’re the l",
+      "posted_date": "2026-05-16T20:32:27+00:00",
+      "salary": "",
+      "tags": [],
+      "id": "986837e862533c84",
+      "first_seen": "2026-05-20",
+      "score": 22,
+      "status": "new"
+    },
+    {
       "title": "Senior Independent Software Developer",
       "company": "A.Team",
       "url": "https://remotive.com/remote-jobs/software-development/senior-independent-software-developer-1919265",
@@ -712,7 +728,7 @@
       ],
       "id": "df60e779ee5e780f",
       "first_seen": "2026-05-20",
-      "score": 22,
+      "score": 18,
       "status": "new"
     },
     {
@@ -736,7 +752,7 @@
       ],
       "id": "502e8a4a82f8c989",
       "first_seen": "2026-05-20",
-      "score": 22,
+      "score": 18,
       "status": "new"
     },
     {
@@ -752,23 +768,7 @@
       "tags": [],
       "id": "2ed07dc846064a9d",
       "first_seen": "2026-05-20",
-      "score": 22,
-      "status": "new"
-    },
-    {
-      "title": "Senior Analytics Developer, Brokerage & Ledger Product Data Science",
-      "company": "Wealthsimple",
-      "url": "https://weworkremotely.com/remote-jobs/wealthsimple-senior-analytics-developer-brokerage-ledger-product-data-science",
-      "source": "weworkremotely",
-      "location": "Remote",
-      "remote_type": "remote",
-      "description": "<p>\n  <strong>Headquarters:</strong> Remote / Canada\n</p>\n\n<div class=\"content\"><div class=\"section-wrapper page-full-width\"><div class=\"section page-centered\"><div><span><b>Build something people love</b></span></div><div>Wealthsimple is on a mission to help everyone achieve financial freedom by reimagining what it means to manage your money. Using smart technology, we take financial services that are often confusing and expensive and make them transparent and low-cost for everyone. We’re the l",
-      "posted_date": "2026-05-16T20:32:27+00:00",
-      "salary": "",
-      "tags": [],
-      "id": "986837e862533c84",
-      "first_seen": "2026-05-20",
-      "score": 22,
+      "score": 18,
       "status": "new"
     },
     {
@@ -1764,48 +1764,7 @@
       ],
       "id": "5d1e9a0ff3af79de",
       "first_seen": "2026-05-20",
-      "score": 18,
-      "status": "new"
-    },
-    {
-      "title": "Content Reviewer - US",
-      "company": "TELUS Digital",
-      "url": "https://www.workingnomads.com/job/go/1558503/",
-      "source": "workingnomads",
-      "location": "United States",
-      "remote_type": "remote",
-      "description": "<p> </p>\n<p>Looking for a freelance opportunity where you can make an impact on technology from the comfort of your home? If you are dynamic, tech-savvy, and always online to learn more, this part-time flexible project is the perfect fit for you! </p>\n<p> </p>\n<p><strong>A Day in the Life of a </strong>Content Reviewer - US<strong>:</strong></p>\n<ul>\n<li>In this role, you’ll be analyzing and providing feedback on texts, pages, images, and other types of information for top search engines, using ",
-      "posted_date": "2026-04-23T08:02:20-04:00",
-      "salary": "",
-      "tags": [
-        "communication",
-        "english",
-        "business",
-        "social media"
-      ],
-      "id": "c7e55434cbf0c8e2",
-      "first_seen": "2026-05-20",
-      "score": 16,
-      "status": "new"
-    },
-    {
-      "title": "Phone Sales Recovery Agent",
-      "company": "Sun Coast Sciences",
-      "url": "https://www.workingnomads.com/job/go/1606235/",
-      "source": "workingnomads",
-      "location": "Philippines, Colombia, South Africa",
-      "remote_type": "remote",
-      "description": "<p> </p>\n<p><strong>Phone Sales Recovery Agent:</strong></p>\n<p>We are seeking a motivated and dedicated Phone Sales Recovery Agent to join our team. In this role, you will be responsible for reaching out to customers whose order did not get processed using phone calls, emails, and text messages to recover incomplete sales. This is a base pay + commission position with unlimited earning potential, making it perfect for individuals who thrive in a performance-driven environment.</p>\n<p><strong>Wh",
-      "posted_date": "2026-05-16T01:11:28-04:00",
-      "salary": "",
-      "tags": [
-        "phone",
-        "communication",
-        "commission"
-      ],
-      "id": "b2ec68acc073a858",
-      "first_seen": "2026-05-20",
-      "score": 14,
+      "score": 13,
       "status": "new"
     },
     {
@@ -1891,6 +1850,27 @@
     {
       "title": "Content Reviewer - US",
       "company": "TELUS Digital",
+      "url": "https://www.workingnomads.com/job/go/1558503/",
+      "source": "workingnomads",
+      "location": "United States",
+      "remote_type": "remote",
+      "description": "<p> </p>\n<p>Looking for a freelance opportunity where you can make an impact on technology from the comfort of your home? If you are dynamic, tech-savvy, and always online to learn more, this part-time flexible project is the perfect fit for you! </p>\n<p> </p>\n<p><strong>A Day in the Life of a </strong>Content Reviewer - US<strong>:</strong></p>\n<ul>\n<li>In this role, you’ll be analyzing and providing feedback on texts, pages, images, and other types of information for top search engines, using ",
+      "posted_date": "2026-04-23T08:02:20-04:00",
+      "salary": "",
+      "tags": [
+        "communication",
+        "english",
+        "business",
+        "social media"
+      ],
+      "id": "c7e55434cbf0c8e2",
+      "first_seen": "2026-05-20",
+      "score": 11,
+      "status": "new"
+    },
+    {
+      "title": "Content Reviewer - US",
+      "company": "TELUS Digital",
       "url": "https://remotive.com/remote-jobs/all-others/content-reviewer-us-2089990",
       "source": "remotive",
       "location": "USA",
@@ -1909,6 +1889,26 @@
       "id": "6a5ed3063f752276",
       "first_seen": "2026-05-20",
       "score": 11,
+      "status": "new"
+    },
+    {
+      "title": "Phone Sales Recovery Agent",
+      "company": "Sun Coast Sciences",
+      "url": "https://www.workingnomads.com/job/go/1606235/",
+      "source": "workingnomads",
+      "location": "Philippines, Colombia, South Africa",
+      "remote_type": "remote",
+      "description": "<p> </p>\n<p><strong>Phone Sales Recovery Agent:</strong></p>\n<p>We are seeking a motivated and dedicated Phone Sales Recovery Agent to join our team. In this role, you will be responsible for reaching out to customers whose order did not get processed using phone calls, emails, and text messages to recover incomplete sales. This is a base pay + commission position with unlimited earning potential, making it perfect for individuals who thrive in a performance-driven environment.</p>\n<p><strong>Wh",
+      "posted_date": "2026-05-16T01:11:28-04:00",
+      "salary": "",
+      "tags": [
+        "phone",
+        "communication",
+        "commission"
+      ],
+      "id": "b2ec68acc073a858",
+      "first_seen": "2026-05-20",
+      "score": 10,
       "status": "new"
     },
     {
