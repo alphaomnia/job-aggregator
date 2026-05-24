@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-24T11:01:53.764412Z",
+  "generated_at": "2026-05-24T17:33:26.234544Z",
   "count": 122,
   "jobs": [
     {
@@ -69,7 +69,7 @@
       ],
       "id": "2dbcd7f22c60374f",
       "first_seen": "2026-05-23",
-      "score": 18,
+      "score": 14,
       "status": "new"
     },
     {
