@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-24T17:33:26.234544Z",
+  "generated_at": "2026-05-25T16:07:22.841207Z",
   "count": 122,
   "jobs": [
     {
@@ -89,7 +89,7 @@
       ],
       "id": "cdc8f50c395a566b",
       "first_seen": "2026-05-22",
-      "score": 32,
+      "score": 28,
       "status": "new"
     },
     {
@@ -105,7 +105,7 @@
       "tags": [],
       "id": "7372aa850630a4d4",
       "first_seen": "2026-05-22",
-      "score": 26,
+      "score": 22,
       "status": "new"
     },
     {
@@ -121,7 +121,7 @@
       "tags": [],
       "id": "747c49fdeeb368a1",
       "first_seen": "2026-05-22",
-      "score": 26,
+      "score": 22,
       "status": "new"
     },
     {
@@ -137,7 +137,7 @@
       "tags": [],
       "id": "186ad52a4547eb03",
       "first_seen": "2026-05-22",
-      "score": 26,
+      "score": 22,
       "status": "new"
     },
     {
@@ -153,7 +153,7 @@
       "tags": [],
       "id": "411ca6214cfd44b0",
       "first_seen": "2026-05-22",
-      "score": 26,
+      "score": 22,
       "status": "new"
     },
     {
@@ -169,7 +169,7 @@
       "tags": [],
       "id": "2e0881019f6dadc5",
       "first_seen": "2026-05-22",
-      "score": 26,
+      "score": 22,
       "status": "new"
     },
     {
@@ -185,7 +185,7 @@
       "tags": [],
       "id": "60a8f26e42dcd2f5",
       "first_seen": "2026-05-22",
-      "score": 26,
+      "score": 22,
       "status": "new"
     },
     {
@@ -201,7 +201,7 @@
       "tags": [],
       "id": "a8306ffeaa6c1ef4",
       "first_seen": "2026-05-22",
-      "score": 26,
+      "score": 22,
       "status": "new"
     },
     {
@@ -217,7 +217,7 @@
       "tags": [],
       "id": "8d08c5bd13419c4c",
       "first_seen": "2026-05-22",
-      "score": 26,
+      "score": 22,
       "status": "new"
     },
     {
@@ -233,7 +233,7 @@
       "tags": [],
       "id": "4e8d8951e358620d",
       "first_seen": "2026-05-22",
-      "score": 26,
+      "score": 22,
       "status": "new"
     },
     {
@@ -249,7 +249,7 @@
       "tags": [],
       "id": "43d44f4275f6ea91",
       "first_seen": "2026-05-22",
-      "score": 26,
+      "score": 22,
       "status": "new"
     },
     {
@@ -271,7 +271,7 @@
       ],
       "id": "ddb295fbd447ba02",
       "first_seen": "2026-05-22",
-      "score": 26,
+      "score": 22,
       "status": "new"
     },
     {
@@ -293,7 +293,7 @@
       ],
       "id": "5cd47e9b88e272a6",
       "first_seen": "2026-05-22",
-      "score": -8,
+      "score": -12,
       "status": "new"
     },
     {
@@ -373,7 +373,7 @@
       ],
       "id": "94b581fa910859dd",
       "first_seen": "2026-05-21",
-      "score": 18,
+      "score": 13,
       "status": "new"
     },
     {
@@ -437,7 +437,7 @@
       "tags": [],
       "id": "4e8ea12149c07753",
       "first_seen": "2026-05-20",
-      "score": 34,
+      "score": 30,
       "status": "new"
     },
     {
@@ -453,7 +453,7 @@
       "tags": [],
       "id": "93a1a3799bb29546",
       "first_seen": "2026-05-20",
-      "score": 34,
+      "score": 30,
       "status": "new"
     },
     {
@@ -705,7 +705,7 @@
       "tags": [],
       "id": "986837e862533c84",
       "first_seen": "2026-05-20",
-      "score": 22,
+      "score": 18,
       "status": "new"
     },
     {
@@ -1090,57 +1090,6 @@
         "next.js"
       ],
       "id": "3e2500a2989a01c0",
-      "first_seen": "2026-05-20",
-      "score": 18,
-      "status": "new"
-    },
-    {
-      "title": "Head of Engineering",
-      "company": "Lemon.io",
-      "url": "https://remotive.com/remote-jobs/software-development/head-of-engineering-2089995",
-      "source": "remotive",
-      "location": "USA timezones, European timezones",
-      "remote_type": "remote",
-      "description": "About Lemon.io   Lemon.io is a profitable, growing talent marketplace that connects vetted senior engineers with companies that need them. We’ve been in business for 10 years, have 60 people across Ukraine, Europe, Canada, and the US, and process over $16M in annual GMV. We compress the traditional 2–5 week hiring timeline down to 24–48 hours through a curated, pre-vetted supply of developers.  Hiring is still broken. Recruiters spend weeks building candidate pipelines on traditional platforms, ",
-      "posted_date": "2026-04-24T14:40:54",
-      "salary": "",
-      "tags": [
-        "AI/ML",
-        "startup",
-        "marketplace",
-        "fundraising"
-      ],
-      "id": "5045105f6e6962a3",
-      "first_seen": "2026-05-20",
-      "score": 18,
-      "status": "new"
-    },
-    {
-      "title": "Mid/Senior AI Video Artist",
-      "company": "EverAI",
-      "url": "https://remotive.com/remote-jobs/marketing/mid-senior-ai-video-artist-2089994",
-      "source": "remotive",
-      "location": "Worldwide",
-      "remote_type": "remote",
-      "description": "Our Vision & Products    🚀 EverAI — Building the Future of AI Companionship     One of the Top 15 Largest & Fastest-Growing AI Companies in the World    50 Million Users in 2 years — Help Us Reach 100M first, 500M next   At  EverAI , we’re shaping what it means to connect with AI. With  50 million users and counting , we're not just building products — we're creating entirely new categories.  Our flagship product is the  world’s largest AI companionship platform , redefining relationships for mi",
-      "posted_date": "2026-04-24T08:15:19",
-      "salary": "-",
-      "tags": [
-        "excel",
-        "video",
-        "AI/ML",
-        "customer acquisition",
-        "advertising",
-        "paid marketing",
-        "video ads",
-        "after effects",
-        "editing",
-        "video editing",
-        "user acquisition",
-        "motion design",
-        "insurance"
-      ],
-      "id": "9dbf6d58ee58e9cb",
       "first_seen": "2026-05-20",
       "score": 18,
       "status": "new"
@@ -1727,6 +1676,57 @@
       "status": "new"
     },
     {
+      "title": "Head of Engineering",
+      "company": "Lemon.io",
+      "url": "https://remotive.com/remote-jobs/software-development/head-of-engineering-2089995",
+      "source": "remotive",
+      "location": "USA timezones, European timezones",
+      "remote_type": "remote",
+      "description": "About Lemon.io   Lemon.io is a profitable, growing talent marketplace that connects vetted senior engineers with companies that need them. We’ve been in business for 10 years, have 60 people across Ukraine, Europe, Canada, and the US, and process over $16M in annual GMV. We compress the traditional 2–5 week hiring timeline down to 24–48 hours through a curated, pre-vetted supply of developers.  Hiring is still broken. Recruiters spend weeks building candidate pipelines on traditional platforms, ",
+      "posted_date": "2026-04-24T14:40:54",
+      "salary": "",
+      "tags": [
+        "AI/ML",
+        "startup",
+        "marketplace",
+        "fundraising"
+      ],
+      "id": "5045105f6e6962a3",
+      "first_seen": "2026-05-20",
+      "score": 13,
+      "status": "new"
+    },
+    {
+      "title": "Mid/Senior AI Video Artist",
+      "company": "EverAI",
+      "url": "https://remotive.com/remote-jobs/marketing/mid-senior-ai-video-artist-2089994",
+      "source": "remotive",
+      "location": "Worldwide",
+      "remote_type": "remote",
+      "description": "Our Vision & Products    🚀 EverAI — Building the Future of AI Companionship     One of the Top 15 Largest & Fastest-Growing AI Companies in the World    50 Million Users in 2 years — Help Us Reach 100M first, 500M next   At  EverAI , we’re shaping what it means to connect with AI. With  50 million users and counting , we're not just building products — we're creating entirely new categories.  Our flagship product is the  world’s largest AI companionship platform , redefining relationships for mi",
+      "posted_date": "2026-04-24T08:15:19",
+      "salary": "-",
+      "tags": [
+        "excel",
+        "video",
+        "AI/ML",
+        "customer acquisition",
+        "advertising",
+        "paid marketing",
+        "video ads",
+        "after effects",
+        "editing",
+        "video editing",
+        "user acquisition",
+        "motion design",
+        "insurance"
+      ],
+      "id": "9dbf6d58ee58e9cb",
+      "first_seen": "2026-05-20",
+      "score": 13,
+      "status": "new"
+    },
+    {
       "title": "Litigation Paralegal (Remote - Texas)",
       "company": "Sneed & Mitchell LLP",
       "url": "https://www.workingnomads.com/job/go/1562359/",
@@ -1742,7 +1742,7 @@
       ],
       "id": "80efcb726d291179",
       "first_seen": "2026-05-20",
-      "score": 18,
+      "score": 13,
       "status": "new"
     },
     {
