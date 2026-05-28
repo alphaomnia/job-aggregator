@@ -1,7 +1,103 @@
 {
-  "generated_at": "2026-05-27T21:16:18.728629Z",
-  "count": 126,
+  "generated_at": "2026-05-28T17:53:00.608052Z",
+  "count": 129,
   "jobs": [
+    {
+      "title": "Staff Product Engineer (Campinas)",
+      "company": "LawnStarter",
+      "url": "https://remotive.com/remote-jobs/product/staff-product-engineer-campinas-2090902",
+      "source": "remotive",
+      "location": "Brazil",
+      "remote_type": "remote",
+      "description": "This is a remote role for candidates located in Campinas, Brazil.  \n About  LawnStarter  \n LawnStarter is the nation's leading on-demand marketplace for lawn care and outdoor services, with over $100M in annual bookings. We're expanding beyond lawn care to become the one-stop shop for all home services — operating across three brands (LawnStarter, Lawn Love, Home Gnome) on a single shared platform. \n  About Engineering at LawnStarter  \n We're restructuring engineering around  initiative teams : ",
+      "posted_date": "2026-05-26T19:33:21",
+      "salary": "$80k - $100k",
+      "tags": [
+        "AWS",
+        "backend",
+        "frontend",
+        "php",
+        "react",
+        "security",
+        "UI/UX",
+        "AI/ML",
+        "jira",
+        "react native",
+        "research",
+        "documentation",
+        "laravel",
+        "Typescript ",
+        "people management",
+        "prototyping",
+        "engineering management",
+        "marketplace",
+        "github",
+        "REST",
+        "datadog"
+      ],
+      "id": "ff8ec2d113aca14b",
+      "first_seen": "2026-05-28",
+      "score": 26,
+      "status": "new"
+    },
+    {
+      "title": "Staff Product Engineer (São Paulo)",
+      "company": "LawnStarter",
+      "url": "https://remotive.com/remote-jobs/product/staff-product-engineer-sao-paulo-2090890",
+      "source": "remotive",
+      "location": "Brazil",
+      "remote_type": "remote",
+      "description": "This is a remote role for candidates located in São Paulo (Brazil)   \n  About LawnStarter  \n LawnStarter is the nation's leading on-demand marketplace for lawn care and outdoor services, with over $100M in annual bookings. We're expanding beyond lawn care to become the one-stop shop for all home services — operating across three brands (LawnStarter, Lawn Love, Home Gnome) on a single shared platform. \n  About Engineering at LawnStarter  \n We're restructuring engineering around  initiative teams ",
+      "posted_date": "2026-05-21T16:42:09",
+      "salary": "$80k - $100k",
+      "tags": [
+        "AWS",
+        "backend",
+        "frontend",
+        "php",
+        "react",
+        "security",
+        "UI/UX",
+        "AI/ML",
+        "jira",
+        "react native",
+        "research",
+        "documentation",
+        "laravel",
+        "Typescript ",
+        "people management",
+        "prototyping",
+        "engineering management",
+        "marketplace",
+        "github",
+        "REST",
+        "datadog"
+      ],
+      "id": "072b0169e11dc7a5",
+      "first_seen": "2026-05-28",
+      "score": 22,
+      "status": "new"
+    },
+    {
+      "title": "Data Labeling Specialists",
+      "company": "Workada",
+      "url": "https://remotive.com/remote-jobs/data/data-labeling-specialists-2090903",
+      "source": "remotive",
+      "location": "USA",
+      "remote_type": "remote",
+      "description": "Who We Are   Workada creates high-quality labeled data for advanced technology systems. Our team reviews, organizes, categorizes, evaluates, and quality-checks digital content so those systems can better understand information and perform real-world tasks. We believe careful data work matters. Every reviewed item, categorized example, and quality-checked task helps improve how technology interprets information, follows instructions, and responds in practical settings.   About You   We're hiring ",
+      "posted_date": "2026-05-27T07:12:56",
+      "salary": "$18 - $22/hr",
+      "tags": [
+        "research",
+        "digital content",
+        "spreadsheets"
+      ],
+      "id": "be784d5fde0d4df2",
+      "first_seen": "2026-05-28",
+      "score": 18,
+      "status": "new"
+    },
     {
       "title": "Senior Financial Analyst",
       "company": "Lula Commerce",
@@ -401,7 +497,7 @@
       ],
       "id": "d94e8bf9f32514bd",
       "first_seen": "2026-05-21",
-      "score": 22,
+      "score": 18,
       "status": "new"
     },
     {
@@ -727,7 +823,7 @@
       ],
       "id": "ac5bd601c909a28e",
       "first_seen": "2026-05-20",
-      "score": 22,
+      "score": 18,
       "status": "new"
     },
     {
@@ -1533,22 +1629,6 @@
       "status": "new"
     },
     {
-      "title": "Director of Finance",
-      "company": "Indiewalls",
-      "url": "https://weworkremotely.com/remote-jobs/indiewalls-director-of-finance",
-      "source": "weworkremotely",
-      "location": "Remote",
-      "remote_type": "remote",
-      "description": "<img src=\"https://we-work-remotely.imgix.net/logos/0171/4965/logo.gif?ixlib=rails-4.0.0&amp;w=50&amp;h=50&amp;dpr=2&amp;fit=fill&amp;auto=compress\" />\n\n<p>\n  <strong>Headquarters:</strong> New York\n    <br /><strong>URL:</strong> <a href=\"https://www.indiewalls.com/\">https://www.indiewalls.com/</a>\n</p>\n\n<div class=\"meSK8 M7eMe\"><strong>Role Description</strong></div>\n<div class=\"spb5Rd OIC90c\">\n<p>We are seeking a high-energy, hands-on&nbsp;<strong>Director of Finance</strong> who thrives in th",
-      "posted_date": "2026-04-26T23:32:50+00:00",
-      "salary": "",
-      "tags": [],
-      "id": "52798a8088a749d2",
-      "first_seen": "2026-05-20",
-      "score": 18,
-      "status": "new"
-    },
-    {
       "title": "Senior Full-stack Symfony Developer",
       "company": "Lemon.io",
       "url": "https://www.workingnomads.com/job/go/1587815/",
@@ -1740,6 +1820,22 @@
       "status": "new"
     },
     {
+      "title": "Director of Finance",
+      "company": "Indiewalls",
+      "url": "https://weworkremotely.com/remote-jobs/indiewalls-director-of-finance",
+      "source": "weworkremotely",
+      "location": "Remote",
+      "remote_type": "remote",
+      "description": "<img src=\"https://we-work-remotely.imgix.net/logos/0171/4965/logo.gif?ixlib=rails-4.0.0&amp;w=50&amp;h=50&amp;dpr=2&amp;fit=fill&amp;auto=compress\" />\n\n<p>\n  <strong>Headquarters:</strong> New York\n    <br /><strong>URL:</strong> <a href=\"https://www.indiewalls.com/\">https://www.indiewalls.com/</a>\n</p>\n\n<div class=\"meSK8 M7eMe\"><strong>Role Description</strong></div>\n<div class=\"spb5Rd OIC90c\">\n<p>We are seeking a high-energy, hands-on&nbsp;<strong>Director of Finance</strong> who thrives in th",
+      "posted_date": "2026-04-26T23:32:50+00:00",
+      "salary": "",
+      "tags": [],
+      "id": "52798a8088a749d2",
+      "first_seen": "2026-05-20",
+      "score": 13,
+      "status": "new"
+    },
+    {
       "title": "Content Creator (Remote)",
       "company": "Marker Video",
       "url": "https://www.workingnomads.com/job/go/1566813/",
@@ -1758,7 +1854,7 @@
       ],
       "id": "2dad1c2d84ee96c7",
       "first_seen": "2026-05-20",
-      "score": 18,
+      "score": 13,
       "status": "new"
     },
     {
@@ -2181,7 +2277,7 @@
       ],
       "id": "6b024be9dc45f51a",
       "first_seen": "2026-05-20",
-      "score": 10,
+      "score": 5,
       "status": "new"
     },
     {
@@ -2203,7 +2299,7 @@
       ],
       "id": "8b98a15474d852a1",
       "first_seen": "2026-05-20",
-      "score": 10,
+      "score": 5,
       "status": "new"
     },
     {
@@ -2225,7 +2321,7 @@
       ],
       "id": "cf3c692e20fdc88a",
       "first_seen": "2026-05-20",
-      "score": 10,
+      "score": 5,
       "status": "new"
     },
     {
@@ -2247,7 +2343,7 @@
       ],
       "id": "173d693f0329ff12",
       "first_seen": "2026-05-20",
-      "score": 10,
+      "score": 5,
       "status": "new"
     },
     {
@@ -2267,7 +2363,7 @@
       ],
       "id": "4890558fef990070",
       "first_seen": "2026-05-20",
-      "score": 10,
+      "score": 5,
       "status": "new"
     },
     {
@@ -2289,7 +2385,7 @@
       ],
       "id": "3411752ed48f1fc3",
       "first_seen": "2026-05-20",
-      "score": 10,
+      "score": 5,
       "status": "new"
     },
     {
@@ -2311,7 +2407,7 @@
       ],
       "id": "22eb0e0cdbe0f520",
       "first_seen": "2026-05-20",
-      "score": 10,
+      "score": 5,
       "status": "new"
     },
     {
@@ -2332,7 +2428,7 @@
       ],
       "id": "1183ac7fb5e15069",
       "first_seen": "2026-05-20",
-      "score": 10,
+      "score": 5,
       "status": "new"
     },
     {
@@ -2354,7 +2450,7 @@
       ],
       "id": "0b69f9873a1d21e8",
       "first_seen": "2026-05-20",
-      "score": 10,
+      "score": 5,
       "status": "new"
     },
     {
@@ -2376,7 +2472,7 @@
       ],
       "id": "836095fe1b80c328",
       "first_seen": "2026-05-20",
-      "score": 10,
+      "score": 5,
       "status": "new"
     },
     {
@@ -2398,7 +2494,7 @@
       ],
       "id": "7d6a7570f76e48af",
       "first_seen": "2026-05-20",
-      "score": 10,
+      "score": 5,
       "status": "new"
     },
     {
@@ -2420,7 +2516,7 @@
       ],
       "id": "5f2acb53dbfc48f1",
       "first_seen": "2026-05-20",
-      "score": 10,
+      "score": 5,
       "status": "new"
     },
     {
@@ -2443,7 +2539,7 @@
       ],
       "id": "a1aaf6cdcc19f217",
       "first_seen": "2026-05-20",
-      "score": 10,
+      "score": 5,
       "status": "new"
     },
     {
@@ -2465,7 +2561,7 @@
       ],
       "id": "df865336041d79ce",
       "first_seen": "2026-05-20",
-      "score": 10,
+      "score": 5,
       "status": "new"
     },
     {
@@ -2488,7 +2584,7 @@
       ],
       "id": "ec2b6cabf630daa4",
       "first_seen": "2026-05-20",
-      "score": 10,
+      "score": 5,
       "status": "new"
     },
     {
