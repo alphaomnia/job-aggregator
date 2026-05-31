@@ -1,0 +1,58 @@
+name: Daily Restaurant Aggregator
+
+on:
+  schedule:
+    - cron: "0 7 * * *"   # 07:00 UTC = ~09:00 Prague summer time
+  workflow_dispatch:
+    inputs:
+      initial_scan:
+        description: "Run initial bulk scan (fetches all Prague restaurants)"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+permissions:
+  contents: write
+
+jobs:
+  aggregate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r restaurant-aggregator/requirements.txt
+
+      - name: Run restaurant aggregator
+        env:
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+          FOURSQUARE_API_KEY: ${{ secrets.FOURSQUARE_API_KEY }}
+        run: |
+          if [ "${{ github.event.inputs.initial_scan }}" = "true" ]; then
+            echo "Running initial bulk scan..."
+            python restaurant-aggregator/restaurants_main.py --initial-scan
+          else
+            python restaurant-aggregator/restaurants_main.py
+          fi
+
+      - name: Commit results
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "Restaurant Aggregator Bot"
+          git add restaurant-aggregator/docs/restaurants.json restaurant-aggregator/docs/restaurants.html
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: restaurant scan $(date -u +%Y-%m-%d)"
+            git push
+          fi
