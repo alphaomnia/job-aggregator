@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T17:45:43.876491Z",
+  "generated_at": "2026-05-31T11:52:15.735217Z",
   "count": 138,
   "jobs": [
     {
@@ -417,7 +417,7 @@
       "tags": [],
       "id": "444b97d269cd8e21",
       "first_seen": "2026-05-23",
-      "score": 22,
+      "score": 18,
       "status": "new"
     },
     {
@@ -433,7 +433,7 @@
       "tags": [],
       "id": "676404c496bcbae6",
       "first_seen": "2026-05-23",
-      "score": 22,
+      "score": 18,
       "status": "new"
     },
     {
@@ -791,7 +791,7 @@
       "tags": [],
       "id": "2cbf9838394216ee",
       "first_seen": "2026-05-20",
-      "score": 48,
+      "score": 43,
       "status": "new"
     },
     {
@@ -1689,22 +1689,6 @@
       "status": "new"
     },
     {
-      "title": "(Senior) Berater Product Lifecycle Management (m/w/d)",
-      "company": "Gambit Consulting",
-      "url": "https://weworkremotely.com/remote-jobs/gambit-consulting-senior-berater-product-lifecycle-management-m-w-d",
-      "source": "weworkremotely",
-      "location": "Remote",
-      "remote_type": "remote",
-      "description": "<p>\n  <strong>Headquarters:</strong> Deutschland\n</p>\n\n<div class=\"description-wrapper description-wrapper-shown\" lang=\"de\"><br /><br /><h5 class=\"detail-block-title\">Ihre Aufgaben</h5><br /><div class=\"detail-block-description\"><br /><ul><li>Du arbeitest in Projekten in Bereich Product Lifecycle Management, vorwiegend in Einführungsprojekten von SAP S/4HANA&nbsp;</li><li>Du führst die Prozessaufnahme beim Kunden durch, analysierst den Status-Quo und konzeptionierst zukünftige Prozesse</li><li>D",
-      "posted_date": "2026-04-29T20:33:18+00:00",
-      "salary": "",
-      "tags": [],
-      "id": "e64f33c107d24a6a",
-      "first_seen": "2026-05-20",
-      "score": 18,
-      "status": "new"
-    },
-    {
       "title": "Crypto Trader (Remote, Full Training Provided)",
       "company": "MAIDEL LIMITED",
       "url": "https://weworkremotely.com/remote-jobs/maidel-limited-crypto-trader-remote-full-training-provided",
@@ -1900,6 +1884,22 @@
       "status": "new"
     },
     {
+      "title": "(Senior) Berater Product Lifecycle Management (m/w/d)",
+      "company": "Gambit Consulting",
+      "url": "https://weworkremotely.com/remote-jobs/gambit-consulting-senior-berater-product-lifecycle-management-m-w-d",
+      "source": "weworkremotely",
+      "location": "Remote",
+      "remote_type": "remote",
+      "description": "<p>\n  <strong>Headquarters:</strong> Deutschland\n</p>\n\n<div class=\"description-wrapper description-wrapper-shown\" lang=\"de\"><br /><br /><h5 class=\"detail-block-title\">Ihre Aufgaben</h5><br /><div class=\"detail-block-description\"><br /><ul><li>Du arbeitest in Projekten in Bereich Product Lifecycle Management, vorwiegend in Einführungsprojekten von SAP S/4HANA&nbsp;</li><li>Du führst die Prozessaufnahme beim Kunden durch, analysierst den Status-Quo und konzeptionierst zukünftige Prozesse</li><li>D",
+      "posted_date": "2026-04-29T20:33:18+00:00",
+      "salary": "",
+      "tags": [],
+      "id": "e64f33c107d24a6a",
+      "first_seen": "2026-05-20",
+      "score": 13,
+      "status": "new"
+    },
+    {
       "title": "Sales and Account Manager",
       "company": "Integrated Hire",
       "url": "https://www.workingnomads.com/job/go/1570787/",
@@ -1918,7 +1918,7 @@
       ],
       "id": "56eb00902d158d6e",
       "first_seen": "2026-05-20",
-      "score": 18,
+      "score": 13,
       "status": "new"
     },
     {
