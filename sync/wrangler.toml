@@ -1,0 +1,10 @@
+name = "job-sync"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# Create the KV namespace first:
+#   npx wrangler kv namespace create STATE
+# then paste the returned id below.
+[[kv_namespaces]]
+binding = "STATE"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"

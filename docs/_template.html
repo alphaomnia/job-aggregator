@@ -115,6 +115,9 @@
 
     .subhead .stats { font-family: 'JetBrains Mono', monospace; text-transform: none; letter-spacing: 0; font-size: 12px; }
     .subhead .stats strong { color: var(--accent); font-weight: 500; }
+    .subhead .sync-status { font-family: 'JetBrains Mono', monospace; text-transform: none; letter-spacing: 0; font-size: 11px; color: var(--ink-faint); }
+    .subhead .sync-status[data-state="synced"] { color: var(--sage); }
+    .subhead .sync-status[data-state="error"] { color: var(--accent); }
 
     /* === Filter bar === */
     .filters {
@@ -405,6 +408,9 @@
       .action-btn { width: auto; }
     }
   </style>
+
+  <!-- Optional cross-device sync config (no-op until you fill it in; see sync/). -->
+  <script src="sync-config.js"></script>
 </head>
 <body>
 <div class="page">
@@ -418,6 +424,7 @@
   <div class="subhead">
     <span>Curated openings &middot; Product leadership &middot; CZ &middot; EU &middot; Remote</span>
     <span class="stats" id="stats">&mdash;</span>
+    <span class="sync-status" id="syncStatus" data-state="off"></span>
   </div>
 
   <div class="learn-bar" id="learnBar" hidden></div>
@@ -508,6 +515,7 @@ const STATE = {
   jobs: [],
   generatedAt: '',
   showSuppressed: false,
+  userTimes: {}, // {jobId: epoch-ms of last status change} — for sync merge
   learning: { keywords: {}, dismissedCount: 0 }, // recomputed on every render
   filters: {
     search: '',
@@ -525,12 +533,106 @@ const STATE = {
 
 // --- localStorage for user-set statuses ---
 const STORAGE_KEY = 'roles_user_states_v1';
+const TIMES_KEY = 'roles_user_times_v1';
+const SYNC_CFG_KEY = 'roles_sync_config';
 try {
   STATE.userStates = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
 } catch (e) { STATE.userStates = {}; }
+try {
+  STATE.userTimes = JSON.parse(localStorage.getItem(TIMES_KEY) || '{}');
+} catch (e) { STATE.userTimes = {}; }
 
 function saveUserStates() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE.userStates)); } catch (e) {}
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE.userStates));
+    localStorage.setItem(TIMES_KEY, JSON.stringify(STATE.userTimes));
+  } catch (e) {}
+}
+
+// --- Cross-device sync (optional) -------------------------------------------
+// Status changes are timestamped and synced through a tiny key/value endpoint
+// (a Cloudflare Worker by default — see sync/). Merge is per-role last-write-
+// wins. When no endpoint is configured the dashboard behaves exactly as before:
+// per-device, localStorage only. Config comes from window.SYNC_CONFIG (set in
+// docs/sync-config.js) or, per-device, from localStorage.
+function getSyncConfig() {
+  const w = window.SYNC_CONFIG;
+  if (w && w.endpoint && w.space) return w;
+  try {
+    const c = JSON.parse(localStorage.getItem(SYNC_CFG_KEY) || 'null');
+    if (c && c.endpoint && c.space) return c;
+  } catch (e) {}
+  return null;
+}
+// Enable sync on a single device from the console without committing config:
+//   setSyncConfig({ endpoint: '...', space: '...', token: '...' })
+window.setSyncConfig = (cfg) => { localStorage.setItem(SYNC_CFG_KEY, JSON.stringify(cfg)); location.reload(); };
+
+function setSyncStatus(s) {
+  const el = document.getElementById('syncStatus');
+  if (!el) return;
+  el.dataset.state = s;
+  el.textContent = { off: '', syncing: '⟳ syncing', synced: '✓ synced', error: '⚠ sync error' }[s] || '';
+}
+
+function syncUrl(cfg) { return `${cfg.endpoint}?space=${encodeURIComponent(cfg.space)}`; }
+function syncHeaders(cfg) {
+  const h = { 'Content-Type': 'application/json' };
+  if (cfg.token) h['Authorization'] = 'Bearer ' + cfg.token;
+  return h;
+}
+
+// Build the wire document from local state: {states:{id:{status,ts}}}.
+function localStatesDoc() {
+  const states = {};
+  for (const id of new Set([...Object.keys(STATE.userStates), ...Object.keys(STATE.userTimes)])) {
+    states[id] = { status: STATE.userStates[id] || '', ts: STATE.userTimes[id] || 0 };
+  }
+  return { states };
+}
+
+// Fold a remote document into local state, newest timestamp per role wins.
+function mergeRemote(remoteStates) {
+  let changed = false;
+  for (const [id, r] of Object.entries(remoteStates || {})) {
+    if ((r.ts || 0) > (STATE.userTimes[id] || 0)) {
+      if (r.status) STATE.userStates[id] = r.status; else delete STATE.userStates[id];
+      STATE.userTimes[id] = r.ts || 0;
+      changed = true;
+    }
+  }
+  return changed;
+}
+
+let _pushTimer = null;
+async function syncPush() {
+  const cfg = getSyncConfig();
+  if (!cfg) return;
+  setSyncStatus('syncing');
+  try {
+    const resp = await fetch(syncUrl(cfg), { method: 'PUT', headers: syncHeaders(cfg), body: JSON.stringify(localStatesDoc()) });
+    if (!resp.ok) throw new Error('status ' + resp.status);
+    const doc = await resp.json();
+    if (mergeRemote(doc.states)) { saveUserStates(); render(); }
+    setSyncStatus('synced');
+  } catch (e) { setSyncStatus('error'); }
+}
+function scheduleSyncPush() {
+  if (!getSyncConfig()) return;
+  clearTimeout(_pushTimer);
+  _pushTimer = setTimeout(syncPush, 600);
+}
+async function syncPull() {
+  const cfg = getSyncConfig();
+  if (!cfg) { setSyncStatus('off'); return; }
+  setSyncStatus('syncing');
+  try {
+    const resp = await fetch(syncUrl(cfg), { headers: syncHeaders(cfg), cache: 'no-store' });
+    if (!resp.ok) throw new Error('status ' + resp.status);
+    const doc = await resp.json();
+    if (mergeRemote(doc.states)) { saveUserStates(); render(); }
+    setSyncStatus('synced');
+  } catch (e) { setSyncStatus('error'); }
 }
 
 // --- Load jobs.json (always cache-busted so we never show stale data) ---
@@ -543,6 +645,7 @@ async function loadJobs() {
     document.getElementById('todaysDate').textContent = formatDate(data.generated_at);
     populateSourceFilter();
     render();
+    syncPull();   // pick up status changes made on other devices
   } catch (err) {
     document.getElementById('listings').innerHTML = '<div class="empty">Could not load jobs.json. Run the GitHub Action at least once.</div>';
   }
@@ -862,8 +965,10 @@ function bindEvents() {
     } else {
       STATE.userStates[id] = action;
     }
+    STATE.userTimes[id] = Date.now();
     saveUserStates();
     render();
+    scheduleSyncPush();   // propagate to other devices
   });
 }
 

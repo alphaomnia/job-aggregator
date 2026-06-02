@@ -58,6 +58,19 @@ export PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers
 node .claude/skills/run-job-aggregator/driver.mjs          # screenshot + learn smoke (default)
 node .claude/skills/run-job-aggregator/driver.mjs shot     # just screenshot the board
 node .claude/skills/run-job-aggregator/driver.mjs learn    # dismiss a role, prove similar ones hide
+node .claude/skills/run-job-aggregator/driver.mjs sync     # two-device cross-device sync smoke test
+```
+
+The `sync` command stands up a local mock of the Cloudflare Worker contract
+(`sync/worker.js`), drives two independent browser contexts (= two devices)
+pointed at the same sync `space`, and asserts a dismissal on device A reaches
+device B and an "interested" on B reaches A after refresh. Verified output:
+
+```
+A dismissed "Head of Product" -> pushed to endpoint. ✓
+B pulled A's dismissal on load. ✓
+A pulled B's "interested" after refresh. ✓
+SMOKE OK: two devices converged through the sync endpoint.
 ```
 
 The driver serves `docs/` on an ephemeral port, loads it in headless Chromium,
