@@ -66,7 +66,7 @@ class JobStore:
         }
         return before - len(self._jobs)
 
-    def save(self) -> None:
+    def save(self, meta: dict | None = None) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         payload = {
             "generated_at": datetime.utcnow().isoformat() + "Z",
@@ -77,4 +77,7 @@ class JobStore:
                 reverse=True,
             ),
         }
+        if meta:
+            # e.g. per-adapter health so the dashboard can flag dead sources.
+            payload.update(meta)
         self.path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")

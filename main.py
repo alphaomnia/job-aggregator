@@ -13,6 +13,8 @@ from __future__ import annotations
 
 import os
 import sys
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime
 from pathlib import Path
 
 import yaml
@@ -32,10 +34,15 @@ def main() -> int:
     print("Job aggregator run")
     print("=" * 60)
 
-    # 1. Load config
+    # 1. Load config (+ optional feedback.yaml for server-side suppression)
     config_path = ROOT / "config.yaml"
     with config_path.open("r", encoding="utf-8") as f:
         config = yaml.safe_load(f)
+
+    feedback_path = ROOT / "feedback.yaml"
+    if feedback_path.exists():
+        with feedback_path.open("r", encoding="utf-8") as f:
+            config["feedback"] = yaml.safe_load(f) or {}
 
     enabled = config.get("adapters", [])
     print(f"Enabled adapters: {enabled}")
@@ -48,19 +55,30 @@ def main() -> int:
     store = JobStore(DATA_PATH)
     print(f"Loaded {len(store.all())} existing jobs from {DATA_PATH}")
 
-    # 3. Run all adapters
+    # 3. Run all adapters concurrently (they're network-bound and never raise).
+    known = [(name, ADAPTERS[name]) for name in enabled if name in ADAPTERS]
+    for name in enabled:
+        if name not in ADAPTERS:
+            print(f"[main] Unknown adapter '{name}' — skipping")
+
+    def run_adapter(item: tuple[str, type]) -> tuple[str, list]:
+        name, cls = item
+        return name, cls(search_terms=search_terms)._safe_fetch()
+
     incoming = []
     sources_used: list[str] = []
-    for name in enabled:
-        cls = ADAPTERS.get(name)
-        if not cls:
-            print(f"[main] Unknown adapter '{name}' — skipping")
-            continue
-        adapter = cls(search_terms=search_terms)
-        jobs = adapter._safe_fetch()
-        if jobs:
-            incoming.extend(jobs)
-            sources_used.append(name)
+    per_source: dict[str, int] = {}
+    with ThreadPoolExecutor(max_workers=max(1, len(known))) as pool:
+        for name, jobs in pool.map(run_adapter, known):
+            per_source[name] = len(jobs)
+            if jobs:
+                incoming.extend(jobs)
+                sources_used.append(name)
+
+    # Surface silent failures: an enabled source that returned nothing.
+    dead = [n for n, c in per_source.items() if c == 0]
+    if dead:
+        print(f"[main] WARNING: enabled sources returned 0 postings: {', '.join(dead)}")
 
     print(f"Fetched {len(incoming)} total raw postings")
 
@@ -77,7 +95,10 @@ def main() -> int:
     if pruned:
         print(f"Pruned {pruned} stale postings")
 
-    store.save()
+    store.save(meta={"sources": {
+        "checked_at": datetime.utcnow().isoformat() + "Z",
+        "counts": per_source,
+    }})
     print(f"Saved {len(store.all())} jobs to {DATA_PATH}")
 
     # 6. Regenerate dashboard
@@ -93,8 +114,9 @@ def main() -> int:
     # 7. Email digest - only new jobs above threshold, ranked
     threshold = config.get("digest_score_threshold", 15)
     max_jobs = config.get("digest_max_jobs", 20)
+    # Jobs were already scored above (step 5); reuse job.score, don't re-score.
     new_above_threshold = sorted(
-        [j for j in new_jobs if score_job(j, config) >= threshold],
+        [j for j in new_jobs if j.score >= threshold],
         key=lambda j: j.score,
         reverse=True,
     )[:max_jobs]

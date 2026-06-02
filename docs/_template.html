@@ -709,6 +709,17 @@ function escapeHtml(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+// Postings come from scraped third-party sites, so a malicious url could be
+// "javascript:..." and fire on click. Only allow http(s); otherwise no link.
+function safeUrl(u) {
+  if (!u) return '#';
+  try {
+    const parsed = new URL(u, location.href);
+    if (parsed.protocol === 'http:' || parsed.protocol === 'https:') return escapeHtml(parsed.href);
+  } catch (e) {}
+  return '#';
+}
+
 function modeClass(t) {
   if (!t) return '';
   if (t === 'remote') return 'remote';
@@ -731,7 +742,7 @@ function jobHTML(j, index) {
     <article class="job${suppressedCls}" data-id="${j.id}" data-status="${userStatus}">
       <div class="number">№ ${numStr}</div>
       <div class="main">
-        <h2>${isNew ? '<span class="new-flag">new</span>' : ''}<a href="${escapeHtml(j.url)}" target="_blank" rel="noopener">${escapeHtml(j.title)}</a></h2>
+        <h2>${isNew ? '<span class="new-flag">new</span>' : ''}<a href="${safeUrl(j.url)}" target="_blank" rel="noopener">${escapeHtml(j.title)}</a></h2>
         <div class="byline"><span class="company">${escapeHtml(j.company || 'Unknown company')}</span> &middot; ${escapeHtml(j.location || '—')}</div>
         ${desc ? `<div class="desc">${escapeHtml(desc)}${j.description && j.description.length > 280 ? '…' : ''}</div>` : ''}
         <div class="tags">
