@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Never let the dashboard shell go stale: always re-pull the latest data. -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>Roles · Daily Edition</title>
 
   <!-- Icons -->
@@ -185,6 +189,64 @@
     .job:hover { background: rgba(255,255,255,0.5); }
 
     .job[data-status="dismissed"] { opacity: 0.35; }
+    .job.suppressed { opacity: 0.4; }
+    .job.suppressed .main h2 a { color: var(--ink-faint); background-image: none; }
+
+    /* === Learning bar (reacts to what you dismiss) === */
+    .learn-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 16px;
+      margin-bottom: 20px;
+      background: var(--accent-soft);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--ink-mid);
+    }
+    .learn-bar .learn-label {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .learn-kw {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 1px 7px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      color: var(--ink);
+    }
+    .learn-toggle {
+      margin-left: auto;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      padding: 3px 10px;
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      cursor: pointer;
+      border-radius: 2px;
+    }
+    .learn-toggle:hover { background: var(--accent); color: white; }
+
+    .learned-flag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      padding: 1px 7px;
+      background: var(--ink-faint);
+      color: var(--paper);
+      border-radius: 2px;
+    }
 
     .job .number {
       font-family: 'JetBrains Mono', monospace;
@@ -353,6 +415,8 @@
     <span class="stats" id="stats">&mdash;</span>
   </div>
 
+  <div class="learn-bar" id="learnBar" hidden></div>
+
   <section class="filters">
     <div class="filter-group">
       <label for="search">Search</label>
@@ -401,6 +465,14 @@
       </div>
     </div>
     <div class="filter-group">
+      <label>Learning</label>
+      <div class="pill-row" data-filter="learnMode">
+        <button class="pill active" data-value="hide">Hide similar</button>
+        <button class="pill" data-value="rank">Down-rank only</button>
+        <button class="pill" data-value="off">Off</button>
+      </div>
+    </div>
+    <div class="filter-group">
       <label>Min. score</label>
       <input type="number" id="minScore" placeholder="0" min="0" max="100" />
     </div>
@@ -429,6 +501,9 @@
 <script>
 const STATE = {
   jobs: [],
+  generatedAt: '',
+  showSuppressed: false,
+  learning: { keywords: {}, dismissedCount: 0 }, // recomputed on every render
   filters: {
     search: '',
     remote_type: '',
@@ -438,6 +513,7 @@ const STATE = {
     status: '',
     minScore: 0,
     sort: 'score',
+    learnMode: 'hide', // hide | rank | off
   },
   userStates: {}, // {jobId: 'interested' | 'applied' | 'dismissed'}
 };
@@ -452,12 +528,13 @@ function saveUserStates() {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE.userStates)); } catch (e) {}
 }
 
-// --- Load jobs.json ---
+// --- Load jobs.json (always cache-busted so we never show stale data) ---
 async function loadJobs() {
   try {
-    const resp = await fetch('jobs.json?cb=' + Date.now());
+    const resp = await fetch('jobs.json?cb=' + Date.now(), { cache: 'no-store' });
     const data = await resp.json();
     STATE.jobs = data.jobs || [];
+    STATE.generatedAt = data.generated_at || '';
     document.getElementById('todaysDate').textContent = formatDate(data.generated_at);
     populateSourceFilter();
     render();
@@ -472,6 +549,13 @@ function formatDate(iso) {
   return d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 }
 
+function formatUpdated(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d)) return '';
+  return d.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+}
+
 function daysAgo(iso) {
   if (!iso) return null;
   const d = new Date(iso);
@@ -480,14 +564,85 @@ function daysAgo(iso) {
 }
 
 function populateSourceFilter() {
-  const sources = [...new Set(STATE.jobs.map(j => j.source))].sort();
   const sel = document.getElementById('source');
+  // Reset to just the default option so repeated refreshes don't pile up dupes.
+  sel.innerHTML = '<option value="">All sources</option>';
+  const sources = [...new Set(STATE.jobs.map(j => j.source))].sort();
   for (const s of sources) {
     const opt = document.createElement('option');
     opt.value = s;
     opt.textContent = s;
     sel.appendChild(opt);
   }
+}
+
+// --- Learning from dismissals -------------------------------------------------
+// When you dismiss a role, the words in its title become negative signals. Any
+// other role whose title shares those words is treated as "like the ones you
+// dismiss" and gets hidden (or just down-ranked). This is recomputed on every
+// render, so it reacts the instant you dismiss or un-dismiss something. Anything
+// you mark Interested/Applied is protected and never learned as a negative.
+
+// Words that carry no signal, or describe the seniority/structure of almost any
+// role — never treat these as a reason to suppress a posting.
+const LEARN_STOPWORDS = new Set('the a an and or of for to in at on by with as is are be we our your you new remote hybrid onsite full part time fulltime parttime contract contractor freelance freelancer fractional interim permanent temporary job jobs role roles position positions opening openings hiring team teams'.split(/\s+/));
+const GENERIC_ROLE_WORDS = new Set('product manager managers management senior junior mid lead leader leadership director directors head vp president chief officer principal staff executive specialist coordinator associate analyst owner'.split(/\s+/));
+
+function effectiveStatus(j) {
+  return STATE.userStates[j.id] || j.status || 'new';
+}
+
+function titleTokens(title) {
+  return (title || '').toLowerCase().split(/[^a-z0-9+#]+/)
+    .filter(t => t.length >= 3 && !LEARN_STOPWORDS.has(t));
+}
+
+function computeLearning() {
+  const keywords = {};   // token -> how many dismissed roles contain it
+  const positive = {};   // tokens from roles you like — protected
+  let dismissedCount = 0;
+  for (const j of STATE.jobs) {
+    const st = effectiveStatus(j);
+    if (st === 'dismissed') {
+      dismissedCount++;
+      for (const t of new Set(titleTokens(j.title))) {
+        if (GENERIC_ROLE_WORDS.has(t)) continue;
+        keywords[t] = (keywords[t] || 0) + 1;
+      }
+    } else if (st === 'interested' || st === 'applied') {
+      for (const t of new Set(titleTokens(j.title))) positive[t] = true;
+    }
+  }
+  for (const t of Object.keys(keywords)) { if (positive[t]) delete keywords[t]; }
+  STATE.learning = { keywords, dismissedCount };
+}
+
+function learnMatches(j) {
+  if (STATE.filters.learnMode === 'off') return [];
+  const kw = STATE.learning.keywords;
+  const matched = [];
+  for (const t of new Set(titleTokens(j.title))) { if (kw[t]) matched.push(t); }
+  return matched;
+}
+
+function learnPenalty(j) {
+  let p = 0;
+  for (const t of learnMatches(j)) p += 10 + Math.min(STATE.learning.keywords[t] - 1, 3) * 5;
+  return p;
+}
+
+function adjustedScore(j) {
+  return (j.score || 0) - learnPenalty(j);
+}
+
+// A role is hidden by learning only when: mode is "hide", we're not in
+// show-all mode, you haven't acted on it yourself, and it shares a keyword
+// with what you've dismissed.
+function learnHidden(j) {
+  if (STATE.filters.learnMode !== 'hide' || STATE.showSuppressed) return false;
+  const st = effectiveStatus(j);
+  if (st === 'dismissed' || st === 'interested' || st === 'applied') return false;
+  return learnMatches(j).length > 0;
 }
 
 // --- Filters ---
@@ -524,6 +679,7 @@ function applyFilters(jobs) {
       if (effective !== f.status) return false;
     }
     if (f.minScore && (j.score || 0) < f.minScore) return false;
+    if (learnHidden(j)) return false;
     return true;
   });
 }
@@ -531,7 +687,7 @@ function applyFilters(jobs) {
 function sortJobs(jobs) {
   const sort = STATE.filters.sort;
   return [...jobs].sort((a, b) => {
-    if (sort === 'score') return (b.score || 0) - (a.score || 0);
+    if (sort === 'score') return adjustedScore(b) - adjustedScore(a);
     if (sort === 'date') {
       const da = new Date(a.posted_date || a.first_seen || 0).getTime();
       const db = new Date(b.posted_date || b.first_seen || 0).getTime();
@@ -561,8 +717,13 @@ function jobHTML(j, index) {
   const isNew = days !== null && days <= 1;
   const desc = (j.description || '').slice(0, 280);
   const numStr = String(index + 1).padStart(2, '0');
+  const matched = (userStatus === 'interested' || userStatus === 'applied') ? [] : learnMatches(j);
+  const suppressedCls = matched.length ? ' suppressed' : '';
+  const learnedFlag = matched.length
+    ? `<span class="learned-flag" title="Looks like roles you dismissed: ${escapeHtml(matched.join(', '))}">learned ✕</span>`
+    : '';
   return `
-    <article class="job" data-id="${j.id}" data-status="${userStatus}">
+    <article class="job${suppressedCls}" data-id="${j.id}" data-status="${userStatus}">
       <div class="number">№ ${numStr}</div>
       <div class="main">
         <h2>${isNew ? '<span class="new-flag">new</span>' : ''}<a href="${escapeHtml(j.url)}" target="_blank" rel="noopener">${escapeHtml(j.title)}</a></h2>
@@ -572,6 +733,7 @@ function jobHTML(j, index) {
           ${j.remote_type ? `<span class="tag ${modeClass(j.remote_type)}">${escapeHtml(j.remote_type)}</span>` : ''}
           <span class="tag source">${escapeHtml(j.source)}</span>
           ${(j.tags || []).slice(0, 3).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}
+          ${learnedFlag}
         </div>
       </div>
       <div class="meta">
@@ -588,10 +750,44 @@ function jobHTML(j, index) {
   `;
 }
 
+function countLearnHidden() {
+  if (STATE.filters.learnMode !== 'hide') return 0;
+  return STATE.jobs.filter(j => {
+    const st = effectiveStatus(j);
+    if (st === 'dismissed' || st === 'interested' || st === 'applied') return false;
+    return learnMatches(j).length > 0;
+  }).length;
+}
+
+function renderLearnBar() {
+  const bar = document.getElementById('learnBar');
+  const kws = Object.entries(STATE.learning.keywords).sort((a, b) => b[1] - a[1]);
+  if (STATE.filters.learnMode === 'off' || kws.length === 0) {
+    bar.hidden = true;
+    return;
+  }
+  const chips = kws.slice(0, 12).map(([t]) => `<span class="learn-kw">${escapeHtml(t)}</span>`).join('');
+  let html = `<span class="learn-label">Learned from ${STATE.learning.dismissedCount} dismissed</span>${chips}`;
+  const hidden = countLearnHidden();
+  if (STATE.filters.learnMode === 'hide' && hidden > 0) {
+    html += `<button class="learn-toggle" id="learnToggle">${STATE.showSuppressed ? 'Re-hide' : 'Show'} ${hidden} similar</button>`;
+  }
+  bar.innerHTML = html;
+  bar.hidden = false;
+  const toggle = document.getElementById('learnToggle');
+  if (toggle) toggle.addEventListener('click', () => { STATE.showSuppressed = !STATE.showSuppressed; render(); });
+}
+
 function render() {
+  computeLearning();
   const filtered = sortJobs(applyFilters(STATE.jobs));
   const stats = document.getElementById('stats');
-  stats.innerHTML = `<strong>${filtered.length}</strong> shown of ${STATE.jobs.length} on the board`;
+  const hidden = countLearnHidden();
+  const updated = STATE.generatedAt ? ` &middot; updated ${formatUpdated(STATE.generatedAt)}` : '';
+  const hiddenNote = (hidden > 0 && !STATE.showSuppressed) ? ` &middot; ${hidden} hidden by learning` : '';
+  stats.innerHTML = `<strong>${filtered.length}</strong> shown of ${STATE.jobs.length} on the board${hiddenNote}${updated}`;
+
+  renderLearnBar();
 
   const el = document.getElementById('listings');
   if (filtered.length === 0) {
@@ -601,7 +797,7 @@ function render() {
   }
 
   const f = document.getElementById('footer');
-  f.textContent = 'Edit search criteria in config.yaml · Aggregator runs daily at 06:00 UTC';
+  f.textContent = 'Edit search criteria in config.yaml · Aggregator runs daily at 06:00 UTC · The board learns from what you dismiss';
 }
 
 // --- Wire up events ---
@@ -654,6 +850,15 @@ function bindEvents() {
     render();
   });
 }
+
+// --- Keep the board fresh -----------------------------------------------------
+// Re-pull jobs.json whenever the page regains focus / visibility (e.g. when you
+// reopen the installed PWA) and on a slow interval while it's open, so you never
+// look at a stale board.
+document.addEventListener('visibilitychange', () => { if (!document.hidden) loadJobs(); });
+window.addEventListener('focus', () => loadJobs());
+window.addEventListener('pageshow', (e) => { if (e.persisted) loadJobs(); });
+setInterval(() => { if (!document.hidden) loadJobs(); }, 5 * 60 * 1000);
 
 bindEvents();
 loadJobs();
