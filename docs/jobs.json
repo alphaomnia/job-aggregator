@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-02T19:02:20.917087Z",
-  "count": 157,
+  "generated_at": "2026-06-02T21:45:19.095835Z",
+  "count": 158,
   "jobs": [
     {
       "title": "Client Success Manager (US small & medium businesses)",
@@ -20,6 +20,22 @@
         "customer service"
       ],
       "id": "734beb757cca385c",
+      "first_seen": "2026-06-02",
+      "score": 26,
+      "status": "new"
+    },
+    {
+      "title": "Product Manager for Bonsai (Innovation Hub)",
+      "company": "Jetbrains",
+      "url": "https://weworkremotely.com/remote-jobs/jetbrains-product-manager-for-bonsai-innovation-hub",
+      "source": "weworkremotely",
+      "location": "Remote",
+      "remote_type": "remote",
+      "description": "<p>\n  <strong>Headquarters:</strong> London, United Kingdom\n</p>\n\n<div class=\"\"><br /><p>At JetBrains, code is our passion. Ever since we started, back in 2000, we have strived to make the strongest, most effective developer tools on earth. By automating routine checks and corrections, our tools speed up production, freeing developers to grow, discover, and create.</p><br /><p>Bonsai is an innovative project within JetBrains' Innovation Hub. Its aim is to help developers keep AI agents aligned a",
+      "posted_date": "2026-06-02T20:31:23+00:00",
+      "salary": "",
+      "tags": [],
+      "id": "00e77bf3665cba4b",
       "first_seen": "2026-06-02",
       "score": 26,
       "status": "new"
@@ -1830,33 +1846,6 @@
       "status": "new"
     },
     {
-      "title": "Copywriter",
-      "company": "Coalition Technologies",
-      "url": "https://remotive.com/remote-jobs/writing/copywriter-1749306",
-      "source": "remotive",
-      "location": "Worldwide",
-      "remote_type": "remote",
-      "description": "WHO WE'RE LOOKING FOR \n The ideal copywriter has excellent English writing skills and is excited to write high-quality, SEO-driven content that aligns with detailed, client-specific guidelines. Projects most commonly include writing web pages for eCommerce and lead generation business sites such as category pages, product descriptions, and blog posts. Our clientele is constantly evolving. We produce content for these and many other industry verticals: \n   \n Fashion (both mass-market and luxury) ",
-      "posted_date": "2026-05-02T20:01:03",
-      "salary": "$20k -$35k",
-      "tags": [
-        "accounting",
-        "excel",
-        "research",
-        "data analysis",
-        "bookkeeping",
-        "google sheets",
-        "quickbooks",
-        "data entry",
-        "insurance",
-        "G Suite"
-      ],
-      "id": "6d8318ca6a6af787",
-      "first_seen": "2026-05-20",
-      "score": 18,
-      "status": "new"
-    },
-    {
       "title": "Product Manager (B2C Subscription Utilities)",
       "company": "Nexpanse",
       "url": "https://weworkremotely.com/remote-jobs/nexpanse-product-manager-b2c-subscription-utilities",
@@ -2011,6 +2000,33 @@
       "id": "fd8844a3d61c86f5",
       "first_seen": "2026-05-20",
       "score": 18,
+      "status": "new"
+    },
+    {
+      "title": "Copywriter",
+      "company": "Coalition Technologies",
+      "url": "https://remotive.com/remote-jobs/writing/copywriter-1749306",
+      "source": "remotive",
+      "location": "Worldwide",
+      "remote_type": "remote",
+      "description": "WHO WE'RE LOOKING FOR \n The ideal copywriter has excellent English writing skills and is excited to write high-quality, SEO-driven content that aligns with detailed, client-specific guidelines. Projects most commonly include writing web pages for eCommerce and lead generation business sites such as category pages, product descriptions, and blog posts. Our clientele is constantly evolving. We produce content for these and many other industry verticals: \n   \n Fashion (both mass-market and luxury) ",
+      "posted_date": "2026-05-02T20:01:03",
+      "salary": "$20k -$35k",
+      "tags": [
+        "accounting",
+        "excel",
+        "research",
+        "data analysis",
+        "bookkeeping",
+        "google sheets",
+        "quickbooks",
+        "data entry",
+        "insurance",
+        "G Suite"
+      ],
+      "id": "6d8318ca6a6af787",
+      "first_seen": "2026-05-20",
+      "score": 13,
       "status": "new"
     },
     {
