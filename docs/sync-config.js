@@ -1,18 +1,14 @@
 // Cross-device sync configuration for the dashboard.
 //
-// Disabled by default — the board works per-device (localStorage) until you
-// fill this in. To turn on sync across your phone / tablet / laptop:
-//   1. Deploy the sync worker (see /sync/README.md). You get a worker URL,
-//      pick a random `space` id, and set a `token` (the worker's secret).
-//   2. Replace the line below with your values, e.g.:
+// Live: synced across devices through the Cloudflare Worker in /sync.
+// The `window.SYNC_CONFIG ||` prefix lets the local test harness inject its own
+// endpoint without being overridden.
 //
-//        window.SYNC_CONFIG = {
-//          endpoint: "https://job-sync.<you>.workers.dev",
-//          space: "a7f3c9e1-2b4d-4f88-9c10-…",   // any unguessable string
-//          token: "<the SYNC_TOKEN you set on the worker>"
-//        };
-//
-// Then every device loading this dashboard syncs automatically — no per-device
-// setup. The `|| window.SYNC_CONFIG` keeps any value injected earlier (used by
-// the local test harness) intact.
-window.SYNC_CONFIG = window.SYNC_CONFIG || null;
+// Note: the token is served to the browser (unavoidable on a static site). It
+// only guards this one namespace of status flags — keep the dashboard URL
+// private. To rotate it: `npx wrangler secret put SYNC_TOKEN` then update here.
+window.SYNC_CONFIG = window.SYNC_CONFIG || {
+  endpoint: "https://job-sync.jobagg.workers.dev",
+  space: "6994e08d-f532-41a1-98f8-143f7af7cc4a",
+  token: "kwV8iWMJC9URwKeiH5DK2nk80B_ws07WLfTk4yNUdoU"
+};
