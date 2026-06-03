@@ -1,0 +1,20 @@
+# Server-side feedback loop for scoring (read by matcher.py via main.py).
+#
+# This is the committable complement to the dashboard's client-side learning:
+# the dashboard hides dismissed-like roles per-device instantly, while anything
+# listed here lowers the score everywhere -- the email digest and all devices.
+#
+# Empty by default => no effect. Add title keywords / companies you keep
+# dismissing and they'll be pushed down on the next run.
+
+# Title keywords to suppress (whole-word match, case-insensitive).
+# e.g. ["sales", "marketing", "recruiter"]
+suppress_title_keywords: []
+
+# Companies to suppress (substring match on company name).
+# e.g. ["Crypto Capital", "MLM Co"]
+suppress_companies: []
+
+# Penalty sizes (subtracted from a role's score on a match).
+title_keyword_penalty: 12
+company_penalty: 25

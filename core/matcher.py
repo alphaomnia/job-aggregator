@@ -1,7 +1,9 @@
 """Score job postings against user config so we can rank them in the digest."""
 from __future__ import annotations
 
+import re
 from datetime import datetime
+from functools import lru_cache
 from typing import Any
 
 from dateutil import parser as date_parser
@@ -16,8 +18,15 @@ def _haystack(job: JobPosting) -> str:
     ]).lower()
 
 
+@lru_cache(maxsize=2048)
+def _needle_pattern(needle: str) -> re.Pattern:
+    # Whole-word(ish) match so "lead" no longer matches "leadership" and "CPO"
+    # doesn't match inside another token. Multi-word needles match literally.
+    return re.compile(r"(?<!\w)" + re.escape(needle.lower()) + r"(?!\w)")
+
+
 def _contains_any(text: str, needles: list[str]) -> bool:
-    return any(n.lower() in text for n in needles)
+    return any(_needle_pattern(n).search(text) for n in needles)
 
 
 def score_job(job: JobPosting, config: dict[str, Any]) -> int:
@@ -79,6 +88,19 @@ def score_job(job: JobPosting, config: dict[str, Any]) -> int:
     contract_signals = ["fractional", "interim", "contract", "freelance", "part-time", "part time"]
     if any(sig in text for sig in contract_signals) and any(sig in contract_types for sig in contract_signals):
         score += 6
+
+    # Learned suppression (feedback loop). feedback.yaml lets us teach the
+    # server-side scorer to push down roles like the ones being dismissed, so
+    # the email digest and every device benefit -- not just one browser's
+    # localStorage. Empty by default, so this is a no-op until populated.
+    feedback = config.get("feedback") or {}
+    title = job.title.lower()
+    for kw in feedback.get("suppress_title_keywords", []):
+        if _needle_pattern(str(kw)).search(title):
+            score -= int(feedback.get("title_keyword_penalty", 12))
+    for company in feedback.get("suppress_companies", []):
+        if str(company).lower().strip() and str(company).lower().strip() in job.company.lower():
+            score -= int(feedback.get("company_penalty", 25))
 
     return score
 

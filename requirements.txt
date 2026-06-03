@@ -1,7 +1,10 @@
-requests>=2.31.0
-beautifulsoup4>=4.12.0
-lxml>=4.9.0
-feedparser>=6.0.10
-PyYAML>=6.0
-jinja2>=3.1.0
-python-dateutil>=2.8.2
+# Pinned to exact versions for reproducible CI builds (was >= ranges, a
+# supply-chain risk since CI has contents:write). Bump deliberately.
+# jinja2 removed -- it was declared but never imported (templating is a plain
+# file copy in main.py).
+requests==2.34.2
+beautifulsoup4==4.14.3
+lxml==6.1.1
+feedparser==6.0.12
+PyYAML==6.0.3
+python-dateutil==2.9.0.post0

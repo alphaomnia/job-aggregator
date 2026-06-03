@@ -9,8 +9,8 @@ Every day at 06:00 UTC (07:00 Prague in winter, 08:00 in summer):
 1. **Fetches** new postings from each configured adapter (Remotive, We Work Remotely, Working Nomads, Himalayas, Jobgether, freelancermap, Dynamite Jobs, StartupJobs CZ).
 2. **Deduplicates** against `docs/jobs.json` using URL + (title, company) hash.
 3. **Scores** each role against your `config.yaml` (role keywords, location, remote type, seniority).
-4. **Writes** the merged dataset back to `docs/jobs.json` and regenerates `docs/index.html`.
-5. **Commits** the changes to the repo (which republishes GitHub Pages).
+4. **Writes** the merged dataset to `docs/jobs.json` and regenerates `docs/index.html` (in the runner — not committed to `main`).
+5. **Persists** the dataset to the `data` branch (a single force-pushed commit) and **deploys** the dashboard to GitHub Pages via Actions.
 6. **Emails** you a digest of the new high-score matches with a link to the dashboard.
 
 ## Setup (one-time, ~15 minutes)
@@ -23,9 +23,18 @@ gh repo create job-aggregator --private --source=. --remote=origin --push
 
 ### 2. Enable GitHub Pages
 
-Settings → Pages → Source: "Deploy from a branch" → Branch: `main` → Folder: `/docs` → Save.
+Settings → Pages → Source: **"GitHub Actions"** → Save.
 
-After the first action run, your dashboard will be at `https://<your-username>.github.io/job-aggregator/`.
+The daily workflow builds the dashboard in the runner and deploys it straight to
+Pages — nothing is committed to `main`. The store (`jobs.json`) is persisted on a
+dedicated `data` branch as a single, force-pushed commit, so `main`'s history
+never grows. After the first action run, your dashboard will be at
+`https://<your-username>.github.io/job-aggregator/`.
+
+> **Cutover (one time):** flip the Pages source to "GitHub Actions", then run the
+> workflow once manually (Actions → "Daily Job Aggregator" → Run workflow). Pages
+> keeps serving the previous version until the first Actions deploy succeeds, so
+> there's no downtime.
 
 ### 3. Get a Resend API key (for the email digest)
 

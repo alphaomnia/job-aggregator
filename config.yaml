@@ -86,18 +86,19 @@ digest_score_threshold: 15
 # How many top new matches to include in each digest email (the rest are just on the dashboard).
 digest_max_jobs: 20
 
-# Sources to enable. Comment any out you don't want.
+# Sources to enable. Only the sources that actually return data are listed —
+# the rest 403 / return 0 every run (Cloudflare, React SPAs, moved endpoints),
+# wasting the run budget and burying real failures in log noise. Their adapter
+# code is kept in adapters/ for reference; re-enable one only after verifying it
+# works (see CLAUDE.md for the per-adapter status).
 adapters:
-  - remotive
-  - weworkremotely
-  - workingnomads
-  - himalayas
-  - jobgether
-  - freelancermap
-  - dynamitejobs
-  - startupjobs_cz
-  - welcometothejungle
-  - theorg
-  - eustartups
-  - talent_cz
-  - generic
+  - remotive          # official JSON API
+  - weworkremotely    # RSS feeds
+  - workingnomads     # JSON endpoint
+  - generic           # reads sources.yaml (add your own RSS/JSON-LD/JSON sources there)
+
+# Disabled — known-broken, do not re-enable without verifying:
+#   himalayas, jobgether        -> 403 Cloudflare
+#   startupjobs_cz, welcometothejungle, theorg, talent_cz -> React SPA, no static HTML
+#   dynamitejobs                -> returns 0
+#   eustartups, freelancermap   -> RSS endpoint 404 / moved

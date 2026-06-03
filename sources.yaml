@@ -1,0 +1,11 @@
+# User-defined sources for the `generic` adapter (no Python required).
+# Each entry's `name` becomes the JobPosting `source` shown on the dashboard.
+#
+# Supported types:
+#   - rss:       { type: rss, name: ..., url: ... }
+#   - jsonld:    { type: jsonld, name: ..., url: ... }   # page with <script type="application/ld+json"> JobPosting
+#   - json_api:  { type: json_api, name: ..., url: ..., mapping: { title: ..., company: ..., url: ..., ... } }
+#
+# Empty list => the generic adapter runs and cleanly returns nothing.
+# Add entries below to start pulling from them.
+sources: []

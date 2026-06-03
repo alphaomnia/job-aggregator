@@ -1,21 +1,46 @@
-name: Daily Job Aggregator 
+name: Daily Job Aggregator
 
 on:
   schedule:
     - cron: "0 6 * * *"   # 06:00 UTC / 08:00 Prague summer / 07:00 winter
     - cron: "0 14 * * *"  # 14:00 UTC / 16:00 Prague summer - safety net
   workflow_dispatch:
-  
+
+# contents:write -> force-push the store to the `data` branch.
+# pages/id-token  -> deploy the dashboard via GitHub Actions Pages.
 permissions:
-  contents: write  # so the workflow can commit jobs.json back to the repo
+  contents: write
+  pages: write
+  id-token: write
+
+# Never let two runs deploy Pages at once.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   aggregate:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v6
+
+      # The store (jobs.json) is the source of truth for dedup, first_seen and
+      # pruning. It lives on the `data` branch (a single force-pushed commit, so
+      # main's history never grows). Restore it before running.
+      - name: Restore store from data branch
+        run: |
+          git fetch origin data --depth=1 2>/dev/null || echo "no data branch yet"
+          if git cat-file -e origin/data:jobs.json 2>/dev/null; then
+            git show origin/data:jobs.json > docs/jobs.json
+            echo "Restored docs/jobs.json from data branch ($(wc -c < docs/jobs.json) bytes)."
+          else
+            echo "data branch has no jobs.json yet; starting from the committed copy."
+          fi
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -34,14 +59,38 @@ jobs:
           DASHBOARD_URL: ${{ vars.DASHBOARD_URL || 'https://example.github.io/job-aggregator/' }}
         run: python main.py
 
-      - name: Commit updated jobs.json and dashboard
+      # Persist the updated store back to `data` as a SINGLE commit (force-push),
+      # so the data branch is always exactly one commit and never accumulates.
+      - name: Persist store to data branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "Job Aggregator Bot"
-          git add docs/jobs.json docs/index.html
-          if git diff --staged --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "chore: daily aggregator run ($(date -u +%Y-%m-%d))"
-            git push
-          fi
+          tmp="$(mktemp -d)"
+          cp docs/jobs.json "$tmp/jobs.json"
+          (
+            cd "$tmp"
+            git init -q
+            git checkout -q -b data
+            git config user.email "actions@github.com"
+            git config user.name "Job Aggregator Bot"
+            git config commit.gpgsign false
+            git add jobs.json
+            git commit -q -m "data: store snapshot $(date -u +%FT%TZ)"
+            git push -q --force \
+              "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" data
+          )
+          echo "Pushed store snapshot to data branch."
+
+      # Deploy the dashboard (docs/) straight to Pages — index.html is never
+      # committed to git; it's built each run and shipped as a Pages artifact.
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload dashboard artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
