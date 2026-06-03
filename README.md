@@ -92,10 +92,26 @@ job-aggregator/
 
 That's it. The orchestrator picks it up automatically.
 
+## Email-alert sources (LinkedIn, etc.) via `gmail_alerts`
+
+Sources that can't be scraped (LinkedIn, Indeed, Wellfound, …) all offer **email
+job alerts**. The `gmail_alerts` adapter ingests those legally: you subscribe to
+the alerts, point them at a dedicated Gmail inbox, and the adapter reads them via
+IMAP. It never logs into those sites, stores their passwords, or scrapes them —
+**LinkedIn currently supported**; add more in `adapters/email_parsers.py`.
+
+Setup (one-time):
+
+1. Create a **dedicated** Gmail inbox (not your main one — the app password grants full mailbox access).
+2. Enable 2-Step Verification, then generate an **App Password** (Google → Security → App passwords).
+3. Subscribe job alerts to that inbox (LinkedIn → Jobs → set up a job alert → email, daily).
+4. Add repo secrets: `GMAIL_USER` (the inbox) and `GMAIL_APP_PASSWORD` (the app password).
+
+Until those secrets exist the adapter no-ops cleanly. By default it marks alert
+emails as read once ingested (set `GMAIL_MARK_SEEN=0` to disable).
+
 ## Sources NOT covered (and why)
 
-- **LinkedIn** — terms of service prohibit automated access; aggressive anti-scraping. Set up LinkedIn job alert emails and forward them to a dedicated Gmail address; a future adapter can ingest those.
-- **Indeed / cz.indeed.com** — public API was deprecated. Same workaround: subscribe to their alert emails.
 - **Toptal, Go Fractional, Fractional Jobs** — require authenticated sessions. Treat as bookmarks in the dashboard's "Manual sources" section rather than scrape targets.
 
 ## Filtering on the dashboard

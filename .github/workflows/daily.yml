@@ -57,6 +57,9 @@ jobs:
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           DASHBOARD_URL: ${{ vars.DASHBOARD_URL || 'https://example.github.io/job-aggregator/' }}
+          # gmail_alerts adapter (LinkedIn etc.); no-ops if these aren't set.
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: python main.py
 
       # Persist the updated store back to `data` as a SINGLE commit (force-push),
