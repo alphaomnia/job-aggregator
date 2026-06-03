@@ -91,6 +91,10 @@ class EmailAlertParser:
     """Override in a subclass per email source."""
     source: str = ""
     from_domains: list[str] = []   # IMAP FROM filters, e.g. ["linkedin.com"]
+    # An IMAP TEXT query that finds this source's emails even when they've been
+    # auto-forwarded (so the From header is your address, not the original
+    # sender). Should be a distinctive string from the body.
+    text_query: str = ""
 
     def parse(self, html: str, subject: str = "", posted_date: Optional[str] = None) -> list[JobPosting]:
         raise NotImplementedError
@@ -101,6 +105,7 @@ class EmailAlertParser:
 class LinkedInParser(EmailAlertParser):
     source = "linkedin"
     from_domains = ["linkedin.com"]
+    text_query = "linkedin.com/jobs/view"
     _JOB_RE = re.compile(r"/jobs/view/(\d+)")
 
     def parse(self, html: str, subject: str = "", posted_date: Optional[str] = None) -> list[JobPosting]:

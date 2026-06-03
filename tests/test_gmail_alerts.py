@@ -65,6 +65,19 @@ def test_empty_html_is_safe():
     assert LinkedInParser().parse(None) == []
 
 
+def test_forwarded_email_still_parses():
+    # An auto-forward wraps the original (From becomes your address) but keeps the
+    # HTML body. Parsing keys off the job links, not the sender, so it still works.
+    forwarded = (
+        "<div>---------- Forwarded message ----------<br>"
+        "From: LinkedIn &lt;jobalerts-noreply@linkedin.com&gt;<br>"
+        "To: me@example.com</div>" + LINKEDIN_HTML
+    )
+    jobs = LinkedInParser().parse(forwarded, "Fwd: Your job alert", "2026-06-03")
+    assert len(jobs) == 2
+    assert {j.company for j in jobs} == {"Acme Corp", "Globex GmbH"}
+
+
 RAW_EMAIL = (
     "From: jobalerts-noreply@linkedin.com\r\n"
     "Subject: Your job alert\r\n"

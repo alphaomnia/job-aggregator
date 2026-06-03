@@ -95,20 +95,28 @@ That's it. The orchestrator picks it up automatically.
 ## Email-alert sources (LinkedIn, etc.) via `gmail_alerts`
 
 Sources that can't be scraped (LinkedIn, Indeed, Wellfound, …) all offer **email
-job alerts**. The `gmail_alerts` adapter ingests those legally: you subscribe to
-the alerts, point them at a dedicated Gmail inbox, and the adapter reads them via
-IMAP. It never logs into those sites, stores their passwords, or scrapes them —
-**LinkedIn currently supported**; add more in `adapters/email_parsers.py`.
+job alerts**. The `gmail_alerts` adapter ingests those legally: you point the
+alerts at a dedicated inbox and it reads them via IMAP. It never logs into those
+sites, stores their passwords, or scrapes them — **LinkedIn currently
+supported**; add more in `adapters/email_parsers.py`.
 
-Setup (one-time):
+Works with **any IMAP provider**, not just Gmail. Set the credentials as repo
+secrets; until they exist the adapter no-ops cleanly:
 
-1. Create a **dedicated** Gmail inbox (not your main one — the app password grants full mailbox access).
-2. Enable 2-Step Verification, then generate an **App Password** (Google → Security → App passwords).
-3. Subscribe job alerts to that inbox (LinkedIn → Jobs → set up a job alert → email, daily).
-4. Add repo secrets: `GMAIL_USER` (the inbox) and `GMAIL_APP_PASSWORD` (the app password).
+| Provider | `IMAP_HOST` | User / password |
+|---|---|---|
+| Gmail | `imap.gmail.com` (default) | `GMAIL_USER` / `GMAIL_APP_PASSWORD` (App Password; 2FA required) |
+| iCloud | `imap.mail.me.com` | `IMAP_USER` / `IMAP_PASSWORD` (app-specific password; 2FA required) |
+| Other | your host | `IMAP_USER` / `IMAP_PASSWORD` |
 
-Until those secrets exist the adapter no-ops cleanly. By default it marks alert
-emails as read once ingested (set `GMAIL_MARK_SEEN=0` to disable).
+Getting the alerts into that inbox — either way works:
+
+- **Subscribe directly:** create the alert with delivery set to the dedicated address (if the platform lets you), or
+- **Auto-forward:** add a rule in your normal inbox that forwards the alert emails to the dedicated one. The adapter finds them by body signature too, so a forward that rewrites the `From` header still parses — as long as it's forwarded **as HTML** (a plain-text forward strips the job links).
+
+Use a **dedicated** inbox, not your main one: the app password grants full
+mailbox access, and the adapter marks processed alerts as read (set
+`GMAIL_MARK_SEEN=0` to disable).
 
 ## Sources NOT covered (and why)
 
