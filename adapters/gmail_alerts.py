@@ -28,7 +28,7 @@ from core.models import JobPosting
 from .base import BaseAdapter
 from .email_parsers import PARSERS, extract_html, parse_email_date
 
-LOOKBACK_DAYS = 14
+LOOKBACK_DAYS = 30
 MAX_MESSAGES = 100  # safety cap across all senders
 
 
@@ -59,9 +59,14 @@ class GmailAlertsAdapter(BaseAdapter):
         results: list[JobPosting] = []
         try:
             imap.select("INBOX")
+            # Count-only diagnostics (no subjects/senders — Actions logs are public).
+            try:
+                typ, data = imap.uid("SEARCH", "UNSEEN")
+                unseen_total = len(data[0].split()) if (typ == "OK" and data and data[0]) else 0
+            except Exception:  # noqa: BLE001
+                unseen_total = -1
             uids = self._candidate_uids(imap, since)
-            if uids:
-                print(f"[{self.name}] {len(uids)} candidate alert email(s)")
+            print(f"[{self.name}] inbox unread: {unseen_total}; matched alert filters: {len(uids)}")
             for uid in uids[:MAX_MESSAGES]:
                 msg = self._fetch_message(imap, uid)
                 if msg is None:

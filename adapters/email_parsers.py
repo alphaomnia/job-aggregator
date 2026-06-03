@@ -105,7 +105,11 @@ class EmailAlertParser:
 class LinkedInParser(EmailAlertParser):
     source = "linkedin"
     from_domains = ["linkedin.com"]
-    text_query = "linkedin.com/jobs/view"
+    # Broad on purpose: LinkedIn's links are .../comm/jobs/view/... and forwarded
+    # copies lose the linkedin.com From header, so we match any email mentioning
+    # linkedin.com and let parse() do the precise extraction (it yields nothing
+    # for non-job emails, which are then harmlessly skipped).
+    text_query = "linkedin.com"
     _JOB_RE = re.compile(r"/jobs/view/(\d+)")
 
     def parse(self, html: str, subject: str = "", posted_date: Optional[str] = None) -> list[JobPosting]:
