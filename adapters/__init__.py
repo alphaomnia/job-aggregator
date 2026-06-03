@@ -13,6 +13,7 @@ from .theorg import TheOrgAdapter
 from .eustartups import EuStartupsAdapter
 from .talent_cz import TalentCzAdapter
 from .generic import GenericAdapter
+from .gmail_alerts import GmailAlertsAdapter
 
 
 ADAPTERS: dict[str, type[BaseAdapter]] = {
@@ -29,6 +30,7 @@ ADAPTERS: dict[str, type[BaseAdapter]] = {
     "eustartups": EuStartupsAdapter,
     "talent_cz": TalentCzAdapter,
     "generic": GenericAdapter,
+    "gmail_alerts": GmailAlertsAdapter,
 }
 
 

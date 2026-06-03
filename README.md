@@ -92,10 +92,34 @@ job-aggregator/
 
 That's it. The orchestrator picks it up automatically.
 
+## Email-alert sources (LinkedIn, etc.) via `gmail_alerts`
+
+Sources that can't be scraped (LinkedIn, Indeed, Wellfound, …) all offer **email
+job alerts**. The `gmail_alerts` adapter ingests those legally: you point the
+alerts at a dedicated inbox and it reads them via IMAP. It never logs into those
+sites, stores their passwords, or scrapes them — **LinkedIn currently
+supported**; add more in `adapters/email_parsers.py`.
+
+Works with **any IMAP provider**, not just Gmail. Set the credentials as repo
+secrets; until they exist the adapter no-ops cleanly:
+
+| Provider | `IMAP_HOST` | User / password |
+|---|---|---|
+| Gmail | `imap.gmail.com` (default) | `GMAIL_USER` / `GMAIL_APP_PASSWORD` (App Password; 2FA required) |
+| iCloud | `imap.mail.me.com` | `IMAP_USER` / `IMAP_PASSWORD` (app-specific password; 2FA required) |
+| Other | your host | `IMAP_USER` / `IMAP_PASSWORD` |
+
+Getting the alerts into that inbox — either way works:
+
+- **Subscribe directly:** create the alert with delivery set to the dedicated address (if the platform lets you), or
+- **Auto-forward:** add a rule in your normal inbox that forwards the alert emails to the dedicated one. The adapter finds them by body signature too, so a forward that rewrites the `From` header still parses — as long as it's forwarded **as HTML** (a plain-text forward strips the job links).
+
+Use a **dedicated** inbox, not your main one: the app password grants full
+mailbox access, and the adapter marks processed alerts as read (set
+`GMAIL_MARK_SEEN=0` to disable).
+
 ## Sources NOT covered (and why)
 
-- **LinkedIn** — terms of service prohibit automated access; aggressive anti-scraping. Set up LinkedIn job alert emails and forward them to a dedicated Gmail address; a future adapter can ingest those.
-- **Indeed / cz.indeed.com** — public API was deprecated. Same workaround: subscribe to their alert emails.
 - **Toptal, Go Fractional, Fractional Jobs** — require authenticated sessions. Treat as bookmarks in the dashboard's "Manual sources" section rather than scrape targets.
 
 ## Filtering on the dashboard

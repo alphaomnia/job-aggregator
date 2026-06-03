@@ -96,6 +96,7 @@ adapters:
   - weworkremotely    # RSS feeds
   - workingnomads     # JSON endpoint
   - generic           # reads sources.yaml (add your own RSS/JSON-LD/JSON sources there)
+  - gmail_alerts      # ingests LinkedIn (+ future) job-alert emails via IMAP; no-ops until GMAIL_* secrets are set
 
 # Disabled — known-broken, do not re-enable without verifying:
 #   himalayas, jobgether        -> 403 Cloudflare
